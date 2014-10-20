@@ -17,8 +17,9 @@
 	],
 	"require": {
 		"yiisoft/yii2": "*",
-        "bower-asset/undescore": "*"
+        "bower-asset/underscore": "*"
 	},
+
     "autoload": {
         "psr-4": {
             "skeeks\\sx\\": ""
