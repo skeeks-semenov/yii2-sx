@@ -1,0 +1,27 @@
+{
+	"name": "skeeks/yii2-sx",
+	"description": "Skeeks framework for yii framework",
+	"keywords": ["yii", "app", "skeeks", "sx", "framework"],
+	"type": "yii2-extension",
+	"license": "BSD-3-Clause",
+	"support": {
+		"homepage": "http://skeeks.com",
+		"issues": "http://cms.skeeks.com/issues",
+		"source": "http://git.skeeks.com/skeeks/yii2-skeeks-assets"
+	},
+	"authors": [
+		{
+			"name": "Semenov Alexander",
+			"email": "semenov@skeeks.com"
+		}
+	],
+	"require": {
+		"yiisoft/yii2": "*",
+        "bower-asset/undescore": "*"
+	},
+    "autoload": {
+        "psr-4": {
+            "skeeks\\sx\\": ""
+        }
+    }
+}

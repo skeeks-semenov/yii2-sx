@@ -1,0 +1,23 @@
+sx-form-wrapper {}
+
+    form.sx-form {}
+
+        form.sx-form button {
+            cursor: pointer;
+        }
+
+        form.sx-form .sx-form-element-errors {
+            color: #b94a48;
+        }
+
+            /* ошибка элемента лебел красный */
+            form.sx-form .sx-form-control-group.error .sx-form-control-label {
+                color: #b94a48;
+            }
+
+            form.sx-form .sx-form-control-group.error input, form.sx-form .sx-form-control-group.error select, form.sx-form .sx-form-control-group.error textarea {
+                border-color: #b94a48;
+                -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+                -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+                box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+            }
