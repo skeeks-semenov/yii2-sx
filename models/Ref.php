@@ -22,34 +22,24 @@ class Ref
     protected $_pkValue             = null;
 
     /**
-     * @param string|Ref $refOrSpec
+     * @param $className
+     * @param $pkValue
      */
-    public function __construct($refOrSpec)
+    public function __construct($className, $pkValue)
     {
-        if ($refOrSpec instanceof Ref)
-        {
-            $refOrSpec = $refOrSpec->getSpec();
-        }
-
-        $this->_parse($refOrSpec);
+        $this->_className   = $className;
+        $this->_pkValue     = $pkValue;
     }
 
     /**
-     * @param $spec
-     * @throws Exception
+     * @return array
      */
-    protected function _parse($spec)
+    public function toArray()
     {
-        $spec = trim($spec);
-        if (preg_match('/^(?P<className>[a-zA-Z0-9\_\\\]+)\_\_(?P<val>[a-z0-9\_-]+)$/i', $spec, $matches))
-        {
-            $this->_className   = $matches["className"];
-            $this->_pkValue     = $matches["val"];
-        }
-        else
-        {
-            throw new Exception("Invalid ref spec '$spec'.");
-        }
+        return [
+            "linked_to_model" => $this->_className,
+            "linked_to_value" => $this->_pkValue,
+        ];
     }
 
     /**
@@ -63,14 +53,6 @@ class Ref
         $className = $this->_className;
         $find = $className::find()->where([$className::primaryKey()[0] => $this->_pkValue]);
         return $find->one();
-    }
-
-    /**
-     * @return string
-     */
-    public function getSpec()
-    {
-        return (string) $this->getClassName() . "__" . $this->getValue();
     }
 
     /**
@@ -90,14 +72,6 @@ class Ref
         return $this->_pkValue;
     }
 
-
-    /**
-     * @return string
-     */
-    public function __toString()
-    {
-        return $this->getSpec();
-    }
 }
 
 

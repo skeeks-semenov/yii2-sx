@@ -28,8 +28,7 @@ trait HasRef
     {
         if ($this->primaryKey)
         {
-            $spec = $this->className() . '__' . $this->primaryKey;
-            return new Ref($spec);
+            return new Ref($this->className(), $this->primaryKey);
         }
 
         throw new Exception("Can't get a ref of the entity that is not saved yet.");
@@ -50,7 +49,6 @@ trait HasRef
      */
     static public function getRefByPk($pkValue)
     {
-        $spec = static::className() . '__' . $pkValue;
-        return new Ref($spec);
+        return new Ref(static::className(), $pkValue);
     }
 }
