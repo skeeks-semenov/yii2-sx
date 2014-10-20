@@ -2,13 +2,14 @@
 	"name": "skeeks/yii2-sx",
 	"description": "Skeeks framework for yii framework",
 	"keywords": ["yii", "app", "skeeks", "sx", "framework"],
+    "homepage": "http://www.skeeks.com/",
 	"type": "yii2-extension",
 	"license": "BSD-3-Clause",
 	"support": {
-		"homepage": "http://skeeks.com",
-		"issues": "http://cms.skeeks.com/issues",
-		"source": "http://git.skeeks.com/skeeks/yii2-skeeks-assets"
-	},
+        "issues": "http://www.skeeks.com/",
+        "wiki": "http://cms.skeeks.com/wiki/",
+        "source": "http://git.skeeks.com/skeeks/yii2-sx"
+    },
 	"authors": [
 		{
 			"name": "Semenov Alexander",
