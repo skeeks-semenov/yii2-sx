@@ -9,6 +9,9 @@
  * @since 1.0.0
  */
 namespace skeeks\sx\models;
+
+use skeeks\sx\Exception;
+
 /**
  * Class Ref
  * @package skeeks\sx\model
@@ -17,6 +20,7 @@ class Ref
 {
     protected $_className           = null;
     protected $_pkValue             = null;
+
     /**
      * @param string|Ref $refOrSpec
      */
@@ -31,30 +35,42 @@ class Ref
     }
 
     /**
-     * @param  string $spec
-     * @throws Cx_Exception
+     * @param $spec
+     * @throws Exception
      */
     protected function _parse($spec)
     {
         $spec = trim($spec);
-        if (preg_match('/^(?P<className>[a-zA-Z0-9\_\\\]+)\.(?P<val>[a-z0-9\_-]+)$/i', $spec, $matches))
+        if (preg_match('/^(?P<className>[a-zA-Z0-9\_\\\]+)\_\_(?P<val>[a-z0-9\_-]+)$/i', $spec, $matches))
         {
             $this->_className   = $matches["className"];
             $this->_pkValue     = $matches["val"];
         }
         else
         {
-            throw new Cx_ExceptionSxEntity("Invalid ref spec '$spec'.");
+            throw new Exception("Invalid ref spec '$spec'.");
         }
     }
 
+    /**
+     * @return array|null|\yii\db\ActiveRecord
+     */
+    public function findModel()
+    {
+        /**
+         * @var \yii\db\ActiveRecord $className
+         */
+        $className = $this->_className;
+        $find = $className::find()->where([$className::primaryKey()[0] => $this->_pkValue]);
+        return $find->one();
+    }
 
     /**
      * @return string
      */
     public function getSpec()
     {
-        return (string) $this->getClassName() . "." . $this->getValue();
+        return (string) $this->getClassName() . "__" . $this->getValue();
     }
 
     /**
@@ -83,3 +99,5 @@ class Ref
         return $this->getSpec();
     }
 }
+
+
