@@ -55,7 +55,7 @@ class SeoPageName
 
 
         //Небольшая рекурсия
-        if (strlen($value) < 3 || strlen($value) > 64)
+        if (strlen($value) < 2 || strlen($value) > 64)
         {
             $value = $this->filter($value);
         }
