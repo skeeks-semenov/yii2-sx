@@ -11,6 +11,7 @@
 namespace skeeks\sx;
 use \skeeks\sx\Exception;
 
+use yii\helpers\FileHelper;
 /**
  * Class File
  * @package skeeks\sx
@@ -117,6 +118,14 @@ class File
         return (string) $this->get("extension");
     }
 
+    /**
+     * @return string
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getMimeType()
+    {
+        return FileHelper::getMimeType($this->getPath());
+    }
 
     /**
      * @param $value
