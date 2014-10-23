@@ -12,6 +12,7 @@ namespace skeeks\sx\models;
 
 use skeeks\sx\Ix_IdentityMap;
 use skeeks\sx\Tx_IdentityMap;
+use \yii\base\Model;
 /**
  * Class Ref
  * @package skeeks\sx\model
@@ -27,7 +28,7 @@ class IdentityMap
      */
     public function isValid($obj)
     {
-        return $obj instanceof \yii\base\Model;
+        return $obj instanceof Model;
     }
 
     /**
