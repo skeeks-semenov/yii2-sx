@@ -33,24 +33,82 @@ class App
         return self::$_instance;
     }
 
+    /**
+     * @return App
+     */
+    static public function instance()
+    {
+        return static::getInstance();
+    }
+
+
     protected function __construct()
     {}
 
 
     /**
-     * @var Cx_Entity_IdentityMap
+     * @var models\IdentityMap
      */
     protected $_entityMap = null;
     /**
-     * @return Cx_Entity_IdentityMap
+     * @return models\IdentityMap
      */
     public function getEntityMap()
     {
         if (null === $this->_entityMap)
         {
-            $this->_entityMap = new Cx_Entity_IdentityMap();
+            $this->_entityMap = new models\IdentityMap();
         }
 
         return $this->_entityMap;
+    }
+
+
+    /**
+     * @return \yii\web\User|\common\models\User|null
+     */
+    static public function getUser()
+    {
+        if (\Yii::$app->user->isGuest)
+        {
+            return null;
+        }
+
+        return \Yii::$app->user->identity;
+    }
+
+    /**
+     * @return mixed|\yii\web\User
+     */
+    static public function getAuth()
+    {
+        return \Yii::$app->user;
+    }
+
+
+    /**
+     * @return mixed|\yii\web\User
+     */
+    static public function auth()
+    {
+        return static::getAuth();
+    }
+
+    /**
+     * @return \common\models\User|\yii\web\User
+     */
+    static public function user()
+    {
+        return static::getUser();
+    }
+
+    /**
+     * @param $template
+     * @param $data
+     * @return string
+     */
+    static public function renderFrontend($template, $data)
+    {
+        return \Yii::$app->view->renderFile(\Yii::getAlias("@frontend/views/") . $template, $data);
     }
 }
