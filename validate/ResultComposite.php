@@ -1,6 +1,6 @@
 <?php
 /**
- * RusultComposite
+ * ResultComposite
  *
  * @author Semenov Alexander <semenov@skeeks.com>
  * @link http://skeeks.com/

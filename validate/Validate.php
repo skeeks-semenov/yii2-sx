@@ -9,6 +9,7 @@
  * @since 1.0.0
  */
 namespace skeeks\sx\validate;
+use skeeks\sx\validators\IValidator;
 use skeeks\sx\validators\Rule;
 use skeeks\sx\validators\Validator;
 
