@@ -129,6 +129,16 @@ trait Entity
         return $this->addData($data);
     }
 
+
+    /**
+     * @param array $data
+     * @return Entity
+     */
+    public function merge($data = [])
+    {
+        return $this->addData($data);
+    }
+
     /**
      * @param array $data
      * @return $this
