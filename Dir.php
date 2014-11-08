@@ -154,6 +154,22 @@ class Dir
         return ! (bool) $this->isExist();
     }
 
+    /**
+     * @return $this
+     */
+    public function clear()
+    {
+        if (PHP_OS === 'Windows')
+        {
+            exec("rd /s /q {$this->getPath()}/*");
+        }
+        else
+        {
+            exec("rm -rf {$this->getPath()}/*");
+        }
+
+        return $this;
+    }
 
     /**
      * @return array<Dir>
