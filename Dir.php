@@ -238,14 +238,20 @@ class Dir
 
             $totalsize=0;
             if ($dirstream = @opendir($dir)) {
-                while (false !== ($filename = readdir($dirstream))) {
+                while (false !== ($filename = readdir($dirstream)))
+                {
                     if ($filename!="." && $filename!="..")
                     {
-                    if (is_file($dir."/".$filename))
-                    $totalsize+=filesize($dir."/".$filename);
+                        if (is_file($dir."/".$filename))
+                        {
+                            $totalsize+=filesize($dir."/".$filename);
+                        }
 
-                    if (is_dir($dir."/".$filename))
-                        $totalsize+=dir_size($dir."/".$filename);
+                        if (is_dir($dir."/".$filename))
+                        {
+                            $subdir = new self($dir."/".$filename);
+                            $totalsize+= $subdir->getSize()->getBytes();
+                        }
                     }
                 }
             }
