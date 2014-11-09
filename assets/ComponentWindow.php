@@ -1,31 +1,29 @@
 <?php
 /**
- * Custom
+ * ComponentWindow
  *
  * @author Semenov Alexander <semenov@skeeks.com>
  * @link http://skeeks.com/
  * @copyright 2010-2014 SkeekS (Sx)
- * @date 06.11.2014
+ * @date 09.11.2014
  * @since 1.0.0
  */
 namespace skeeks\sx\assets;
 use yii\web\AssetBundle;
 
 /**
- * Class Asset
- * @package skeeks\sx
+ * Class Helpers
+ * @package skeeks\sx\assets
  */
-class Custom extends AssetBundle
+class ComponentWindow extends AssetBundle
 {
     public $sourcePath = '@vendor/skeeks/yii2-sx/assets';
     public $css = [];
-    public $js = [];
-
+    public $js = [
+        'js/components/window/Window.js',
+    ];
     public $depends = [
         'skeeks\sx\assets\Core',
-        'skeeks\sx\assets\Widget',
         'skeeks\sx\assets\Helpers',
-        'skeeks\sx\assets\ComponentWindow',
-        'skeeks\sx\assets\ComponentModal',
     ];
 }
