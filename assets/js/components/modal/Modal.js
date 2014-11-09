@@ -56,7 +56,7 @@
         }
     });
 
-    sx.classes.modal.Alert = sx.classes.modal._Alert.extend({});
+    sx.classes.modal.Alert  = sx.classes.modal._Alert.extend({});
 
     sx.classes.modal._Confirm = sx.classes.modal.Alert.extend({
 
@@ -119,7 +119,6 @@
         }
     });
 
-    sx.classes.modal.Confirm = sx.classes.modal._Confirm.extend({});
-
+    sx.classes.modal.Confirm    = sx.classes.modal._Confirm.extend({});
 
 })(sx, sx.$, sx._);
