@@ -328,7 +328,7 @@
          */
         openerWidget: function()
         {
-            if (this.getParent())
+            if (this.openerSx())
             {
                 return this.openerSx().Windows.findOneByName(window.name);
             }
