@@ -21,7 +21,7 @@
      *
      * @type {void|Function|*}
      */
-    sx.classes.Window = sx.classes.Component.extend({
+    sx.classes._Window = sx.classes.Component.extend({
 
         construct: function (src, name, opts)
         {
@@ -158,6 +158,14 @@
         },
 
         /**
+         * @returns {string}
+         */
+        getName: function()
+        {
+            return String(this._name);
+        },
+
+        /**
          * @returns {sx.classes.Window}
          */
         setCenterOptions: function()
@@ -212,5 +220,149 @@
         }
 
     });
+
+    sx.classes.Window = sx.classes._Window.extend({});
+
+    /**
+     * @type {void|Function|*}
+     */
+    sx.classes.Windows = sx.classes.Component.extend({
+        /**
+         * @returns {Array.<T>|*}
+         */
+        findListRegistered: function()
+        {
+            return _.filter(sx.components, function(component)
+            {
+                if (component instanceof sx.classes._Window)
+                {
+                    return true;
+                }
+            });
+        },
+
+        /**
+         *
+         * @param name
+         * @returns {sx.classes.Window|null}
+         */
+        findOneByName: function(name)
+        {
+            return _.find(this.findListRegistered(), function(component)
+            {
+                if (component.getName() == String(name))
+                {
+                    return true;
+                }
+            });
+        }
+    });
+
+    /**
+     * Поиск виджетов работы с окнами.
+     * @type {{findListRegistered: Function, findOneByName: Function}}
+     */
+    sx.Windows = new sx.classes.Windows();
+
+
+    /**
+     * @type {void|Function|*}
+     */
+    sx.classes._CurrentWindow = sx.classes.Component.extend({
+
+        _init: function()
+        {
+            //Если есть родительское окно, слушае когда оно закроется, как только закроется, закроем и это
+            var self = this;
+            this._timer = null;
+            if (this.openerWindow())
+            {
+                this._timer = setInterval(function()
+                {
+                    if(!self.openerWindow())
+                    {
+                        clearInterval(self._timer);
+                        window.close();
+                    }
+                }, 1000);
+            }
+        },
+
+        /**
+         * Родитльское окно
+         * @returns {*}
+         */
+        openerWindow: function()
+        {
+            if (window.opener)
+            {
+                return window.opener;
+            }
+
+            /*if (window.parent)
+            {
+                return window.parent;
+            }*/
+
+            return null;
+        },
+
+        /**
+         * объект sx родительского окна
+         * @returns {Window.sx|*}
+         */
+        openerSx: function()
+        {
+            if (this.openerWindow())
+            {
+                return this.openerWindow().sx;
+            }
+
+            return null;
+        },
+
+
+        /**
+         * Виджет родительского окна, который породил это окно
+         * @returns {sx.classes._Window|null}
+         */
+        openerWidget: function()
+        {
+            if (this.getParent())
+            {
+                return this.openerSx().Windows.findOneByName(window.name);
+            }
+
+            return null;
+        },
+
+        /**
+         *
+         * @param event
+         * @param data
+         * @returns {sx.classes._CurrentWindow}
+         */
+        openerWidgetTriggerEvent: function(event, data)
+        {
+            if (!this.openerWidget())
+            {
+                return this;
+            }
+
+            this.openerWidget().trigger(event, data);
+            return this;
+        }
+    });
+
+    /**
+     * @type {void|Function|*}
+     */
+    sx.classes.CurrentWindow = sx.classes._CurrentWindow.extend({});
+
+    /**
+     * @type {sx.classes.CurrentWindow}
+     */
+    sx.Window = new sx.classes.CurrentWindow();
+
 
 })(window, sx, sx.$, sx._);
