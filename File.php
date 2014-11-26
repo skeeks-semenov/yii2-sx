@@ -128,6 +128,17 @@ class File
     }
 
     /**
+     * Тип файла - первая часть mime_type
+     * @return string
+     */
+    public function getType()
+    {
+
+        $dataMimeType = explode('/', $this->getMimeType());
+        return (string) $dataMimeType[0];
+    }
+
+    /**
      * @param $value
      * @return $this
      * @throws Exception
