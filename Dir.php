@@ -52,6 +52,24 @@ class Dir
         }
     }
 
+    /**
+     *
+     * TODO: добавить проверки
+     * Скачать файл по src в эту диррикторию
+     *
+     * @param $src
+     * @return File
+     */
+    public function downloadRemouteFile($src)
+    {
+        $content = file_get_contents($src);
+        $realName = File::object($src)->getBaseName();
+
+        $file = $this->newFile($realName);
+        $file->write($content);
+
+        return $file;
+    }
 
     /**
      * @param $baseFileName

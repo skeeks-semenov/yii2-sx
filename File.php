@@ -22,6 +22,7 @@ class File
     use traits\HasWritableOptions;
     use traits\InstanceObject;
 
+
     /**
      *
      * Создание нового объекта файла
