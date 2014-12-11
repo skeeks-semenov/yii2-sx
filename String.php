@@ -103,4 +103,26 @@ class String
         $encoding = \Yii::$app->charset;
         return mb_substr($str, $start, $length, $encoding);
     }
+
+
+
+    /**
+     * @param $data
+     * @return string
+     */
+    static public function compressBase64EncodeUrl($data)
+    {
+        return rtrim(strtr(base64_encode(
+            gzcompress(serialize($data),9)
+        ), '+/', '-_'), '=');
+    }
+
+    /**
+     * @param $string
+     * @return mixed
+     */
+    static public function compressBase64DecodeUrl($string)
+    {
+        return unserialize(gzuncompress(base64_decode(str_pad(strtr($string, '-_', '+/'), strlen($string) % 4, '=', STR_PAD_RIGHT))));
+    }
 }
