@@ -58,7 +58,7 @@ class File
      */
     private function _init()
     {
-        $this->setDirName($this->getDirName());
+        //$this->setDirName($this->getDirName());
 
         if ($this->offsetExists("basename"))
         {
