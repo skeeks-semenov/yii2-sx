@@ -84,6 +84,37 @@
             }
 
             return subject;
+        },
+
+        /**
+         *
+         * analog php function substr
+         *
+         * @param f_string
+         * @param f_start
+         * @param f_length
+         * @return {String}
+         */
+        substr : function(f_string, f_start, f_length)
+        {
+
+            if(f_start < 0) {
+                f_start += f_string.length;
+            }
+
+            if(f_length == undefined) {
+                f_length = f_string.length;
+            } else if(f_length < 0){
+                f_length += f_string.length;
+            } else {
+                f_length += f_start;
+            }
+
+            if(f_length < f_start) {
+                f_length = f_start;
+            }
+
+            return f_string.substring(f_start, f_length);
         }
 
     };
