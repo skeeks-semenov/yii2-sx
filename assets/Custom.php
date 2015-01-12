@@ -9,7 +9,7 @@
  * @since 1.0.0
  */
 namespace skeeks\sx\assets;
-use yii\web\AssetBundle;
+use skeeks\cms\base\AssetBundle;
 
 /**
  * Class Asset
