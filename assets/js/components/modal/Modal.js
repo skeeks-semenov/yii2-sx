@@ -22,8 +22,6 @@
         construct: function(text, opts)
         {
             opts = opts || {};
-
-
             opts.text = text;
 
             this.applyParentMethod(sx.classes.Component, 'construct', [opts]);
@@ -41,9 +39,26 @@
             }
         },
 
+        /**
+         * @returns {sx.classes.modal._Alert}
+         */
         show: function()
         {
+            this.trigger('beforeShow');
+            this._show();
+            this.trigger('afterShow');
+
+            return this;
+        },
+
+        /**
+         * @returns {sx.classes.modal._Alert}
+         * @private
+         */
+        _show: function()
+        {
             alert(this.get("text"));
+            return this;
         },
 
 
@@ -56,7 +71,7 @@
         }
     });
 
-    sx.classes.modal.Alert = sx.classes.modal._Alert.extend({});
+    sx.classes.modal.Alert  = sx.classes.modal._Alert.extend({});
 
     sx.classes.modal._Confirm = sx.classes.modal.Alert.extend({
 
@@ -81,12 +96,14 @@
             }
         },
 
+        /**
+         * @returns {sx.classes.modal._Confirm}
+         */
         show: function()
         {
             this.trigger("beforeShow", this);
 
             var result = confirm(this.get("text"));
-
 
             if (result)
             {
@@ -97,6 +114,8 @@
             }
 
             this.trigger("closed", this);
+
+            return this;
         },
 
         /**
@@ -119,7 +138,6 @@
         }
     });
 
-    sx.classes.modal.Confirm = sx.classes.modal._Confirm.extend({});
-
+    sx.classes.modal.Confirm    = sx.classes.modal._Confirm.extend({});
 
 })(sx, sx.$, sx._);

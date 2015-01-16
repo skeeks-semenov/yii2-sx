@@ -52,6 +52,24 @@ class Dir
         }
     }
 
+    /**
+     *
+     * TODO: добавить проверки
+     * Скачать файл по src в эту диррикторию
+     *
+     * @param $src
+     * @return File
+     */
+    public function downloadRemouteFile($src)
+    {
+        $content = file_get_contents($src);
+        $realName = File::object($src)->getBaseName();
+
+        $file = $this->newFile($realName);
+        $file->write($content);
+
+        return $file;
+    }
 
     /**
      * @param $baseFileName
@@ -154,6 +172,22 @@ class Dir
         return ! (bool) $this->isExist();
     }
 
+    /**
+     * @return $this
+     */
+    public function clear()
+    {
+        if (PHP_OS === 'Windows')
+        {
+            exec("rd /s /q {$this->getPath()}/*");
+        }
+        else
+        {
+            exec("rm -rf {$this->getPath()}/*");
+        }
+
+        return $this;
+    }
 
     /**
      * @return array<Dir>
@@ -238,14 +272,20 @@ class Dir
 
             $totalsize=0;
             if ($dirstream = @opendir($dir)) {
-                while (false !== ($filename = readdir($dirstream))) {
+                while (false !== ($filename = readdir($dirstream)))
+                {
                     if ($filename!="." && $filename!="..")
                     {
-                    if (is_file($dir."/".$filename))
-                    $totalsize+=filesize($dir."/".$filename);
+                        if (is_file($dir."/".$filename))
+                        {
+                            $totalsize+=filesize($dir."/".$filename);
+                        }
 
-                    if (is_dir($dir."/".$filename))
-                        $totalsize+=dir_size($dir."/".$filename);
+                        if (is_dir($dir."/".$filename))
+                        {
+                            $subdir = new self($dir."/".$filename);
+                            $totalsize+= $subdir->getSize()->getBytes();
+                        }
                     }
                 }
             }

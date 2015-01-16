@@ -78,6 +78,9 @@
         // copy the extending method
         F.extend = this.extend;
 
+        // ref to parent
+        F.prototype.parent = this.prototype;
+
         // end
         sx.__isExtending = false;
 

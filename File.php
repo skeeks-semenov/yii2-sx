@@ -22,6 +22,7 @@ class File
     use traits\HasWritableOptions;
     use traits\InstanceObject;
 
+
     /**
      *
      * Создание нового объекта файла
@@ -57,7 +58,7 @@ class File
      */
     private function _init()
     {
-        $this->setDirName($this->getDirName());
+        //$this->setDirName($this->getDirName());
 
         if ($this->offsetExists("basename"))
         {
@@ -125,6 +126,17 @@ class File
     public function getMimeType()
     {
         return FileHelper::getMimeType($this->getPath());
+    }
+
+    /**
+     * Тип файла - первая часть mime_type
+     * @return string
+     */
+    public function getType()
+    {
+
+        $dataMimeType = explode('/', $this->getMimeType());
+        return (string) $dataMimeType[0];
     }
 
     /**

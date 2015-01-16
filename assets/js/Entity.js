@@ -63,7 +63,8 @@
         mergeDefaults: function(data)
         {
             data = data || {};
-            this._opts = _.extend(data, this._opts);
+            var options =  this._opts || {};
+            this._opts = _.extend(data, options);
             return this;
         },
 
@@ -155,6 +156,16 @@
         setOpt: function(name, value)
         {
             return this.set(name, value);
+        },
+
+        /**
+         * @param options
+         * @returns {sx.classes._Entity}
+         */
+        setOpts: function(options)
+        {
+            this._opts = options;
+            return this;
         },
 
         /**

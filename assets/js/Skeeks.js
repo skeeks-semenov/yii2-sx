@@ -83,7 +83,7 @@
     sx.init = function(data)
     {
         //Мержим конфиги
-        sx.config.merge(data);
+        sx.Config.merge(data);
         //Библиотека sx готова
         sx._ready();
     };
