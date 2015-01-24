@@ -24,7 +24,7 @@
     sx.console.init = function()
     {
         //для продукта
-        if (sx.config.isProduct())
+        if (sx.Config.isProduct())
         {
             var methods = ['assert', 'count', 'debug', 'dir', 'dirxml', 'error', 'group', 'groupCollapsed', 'groupEnd', 'info', 'log', 'markTimeline', 'profile', 'profileEnd', 'table', 'time', 'timeEnd', 'trace', 'warn'];
             for (var i = methods.length; i--;)

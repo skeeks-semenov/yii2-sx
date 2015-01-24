@@ -1,23 +1,23 @@
 /*!
  *
- * base Entity
  *
- * @date 06.09.14
+ * @date 24.01.2015
  * @copyright skeeks.com
  * @author Semenov Alexander <semenov@skeeks.com>
  */
+
 (function(sx, $, _)
 {
     sx.createNamespace('classes',       sx);
 
-    sx.classes._GlobalLoader = sx.classes.Component.extend({
+    sx.classes._AjaxLoader = sx.classes.Component.extend({
 
         _init: function()
         {
             this.defaultOpts({
-                "enable"    : true, //включен
-                "bindAjax"  : true, //слушать ajax запросы
-                "imageSrc"  : "/app/static/fw/sx/components/global-loader/images/1.gif" //картинка загрузки
+                "enable"    : true,             //включен
+                "bindAjax"  : true,             //слушать ajax запросы
+                "imageSrc"  : "images/1.gif" //картинка загрузки
             });
         },
 
@@ -94,6 +94,6 @@
         }
     });
 
-    sx.classes.GlobalLoader = sx.classes._GlobalLoader.extend({});
+    sx.classes.AjaxLoader = sx.classes._AjaxLoader.extend({});
 
 })(sx, sx.$, sx._);

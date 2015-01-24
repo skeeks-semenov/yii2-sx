@@ -9,15 +9,12 @@
  * @since 1.0.0
  */
 namespace skeeks\sx\assets;
-use skeeks\cms\base\AssetBundle;
-
 /**
- * Class Helpers
+ * Class Widget
  * @package skeeks\sx\assets
  */
-class Widget extends AssetBundle
+class Widget extends BaseAsset
 {
-    public $sourcePath = '@vendor/skeeks/yii2-sx/assets';
     public $css = [];
     public $js = [
         'js/Widget.js',

@@ -9,15 +9,12 @@
  * @since 1.0.0
  */
 namespace skeeks\sx\assets;
-use skeeks\cms\base\AssetBundle;
-
 /**
- * Class Asset
- * @package skeeks\sx
+ * Class JquryTmpl
+ * @package skeeks\sx\assets
  */
-class JquryTmpl extends AssetBundle
+class JquryTmpl extends BaseAsset
 {
-    public $sourcePath = '@vendor/skeeks/yii2-sx/assets';
     public $css = [];
     public $js = [
         'libs/jquery-plugins/jquery-tmpl/jquery.tmpl.min.js',

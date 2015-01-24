@@ -9,15 +9,28 @@
  * @since 1.0.0
  */
 namespace skeeks\sx\assets;
-use skeeks\cms\base\AssetBundle;
+use yii\web\View;
 
 /**
- * Class Asset
- * @package skeeks\sx
+ * Class Core
+ * @package skeeks\sx\assets
  */
-class Core extends AssetBundle
+class Core extends BaseAsset
 {
-    public $sourcePath = '@vendor/skeeks/yii2-sx/assets';
+    public function init()
+    {
+        parent::init();
+        \Yii::$app->view->on(View::EVENT_BEGIN_BODY, [$this, 'addInitJs']);
+    }
+
+    public function addInitJs()
+    {
+        \Yii::$app->view->registerJs(<<<JS
+        sx.init({});
+JS
+);
+    }
+
     public $css = [];
     public $js = [
         'js/Skeeks.js',
