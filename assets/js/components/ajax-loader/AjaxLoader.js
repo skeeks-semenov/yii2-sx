@@ -40,12 +40,18 @@
             {
                 sx.EventManager.bind(sx.ajax.ajaxStart, function(e, data)
                 {
-                    self.show();
+                    if (sx.ajax.hasExecutingQueries())
+                    {
+                        self.show();
+                    }
                 });
 
                 sx.EventManager.bind(sx.ajax.ajaxStop, function(e, data)
                 {
-                    self.hide();
+                    if (!sx.ajax.hasExecutingQueries())
+                    {
+                        self.hide();
+                    }
                 });
             }
         },
@@ -57,12 +63,12 @@
         _buildLoader: function()
         {
             this.$_loader = $("<div>" ,{
-                "id"     :   "sx-classes-GlobalLoader",
+                "id"     :   "sx-classes-ajaxLoader-1",
                 "style"  :   "position: fixed; top: 50%; left: 50%; z-index: 10000; display: none;"
             }).append(
-               $("<img>", {
+               /*$("<img>", {
                    'src'    : this.get("imageSrc")
-               })
+               })*/
             );
 
             $("body").append(this.$_loader);

@@ -15,7 +15,9 @@ namespace skeeks\sx\assets;
  */
 class ComponentAjaxLoader extends BaseAsset
 {
-    public $css = [];
+    public $css = [
+        'js/components/ajax-loader/css/style.css',
+    ];
     public $js = [
         'js/components/ajax-loader/AjaxLoader.js',
     ];
