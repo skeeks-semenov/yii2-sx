@@ -9,15 +9,12 @@
  * @since 1.0.0
  */
 namespace skeeks\sx\assets;
-use skeeks\cms\base\AssetBundle;
-
 /**
- * Class Helpers
+ * Class ComponentModal
  * @package skeeks\sx\assets
  */
-class ComponentModal extends AssetBundle
+class ComponentModal extends BaseAsset
 {
-    public $sourcePath = '@vendor/skeeks/yii2-sx/assets';
     public $css = [];
     public $js = [
         'js/components/modal/Modal.js',

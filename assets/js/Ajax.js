@@ -1,12 +1,15 @@
-/*
+/*!
+ *
+ * Все что нужно для работы с ajax запросами
+ *
+ * @date 24.01.2015
+ * @copyright skeeks.com
  * @author Semenov Alexander <semenov@skeeks.com>
-*/
+ */
+
 (function(sx, $, _)
 {
-
     sx.createNamespace('classes', sx);
-
-
     /**
      *
      * Класс который подписывается на события ajax запроса.
@@ -49,11 +52,8 @@
      */
     sx.classes.AjaxGenericHandler = sx.classes._AjaxGenericHandler.extend({});
 
-
-
-
-
     /**
+     * allowCountExecuting
      * Конструктор ajax запроса
      * @type {*}
      */
@@ -72,6 +72,18 @@
         {
             this._url = url;
             this.applyParentMethod(sx.classes.Component, 'construct', [opts]); // TODO: make a workaround for magic parent calling
+
+            /**
+             * Регистрация запроса
+             */
+            sx.ajax.registerQuery(this);
+
+            /**
+             * Запрос сейчас в процессе счетчик?
+             * @type {number}
+             * @private
+             */
+            this._executing    = 0;
         },
 
         /**
@@ -80,6 +92,9 @@
          */
         _init: function()
         {
+            var self = this;
+
+
             var ajaxStartCallback = this.get("ajaxStart");
             if (ajaxStartCallback !== null)
             {
@@ -134,6 +149,15 @@
                 this.set("error", null)
             }
 
+            this.onComplete(function()
+            {
+                /**
+                 * Запрос выполнился
+                 * @type {number|*|Number}
+                 * @private
+                 */
+                self._executing    = Number(self._executing - 1);
+            });
 
             this._additional = null;
         },
@@ -146,6 +170,19 @@
         execute: function()
         {
             var self = this;
+
+            if (this.get('allowCountExecuting', true))
+            {
+                self._executing = Number(self._executing + 1);
+            }
+
+            /**
+             * Событие перед началом выполнения запроса
+             */
+            self.trigger("beforeExecute", {
+                ajax: self
+            });
+
             var settings = this.getOpts();
 
             _.extend(settings, {
@@ -170,8 +207,6 @@
                         ajax: self
                     });
                 },
-
-
 
                 beforeSend: function()
                 {
@@ -212,6 +247,14 @@
             return $.ajax(this.getUrl(), settings);
         },
 
+        /**
+         * Запрос сейчас находиться в процессе выполнения?
+         * @returns {boolean|*|Boolean}
+         */
+        isExecuting: function()
+        {
+            return Boolean(this._executing);
+        },
         /**
          *
          * @returns {string}
@@ -361,6 +404,41 @@
         ajaxError:      "ajaxError",    //This global event behaves the same as the local error event.
         ajaxComplete:   "ajaxComplete", //This event behaves the same as the complete event and will be triggered every time an Ajax request finishes.
 
+        queries:[],
+
+        // register function
+        registerQuery: function(query)
+        {
+            if (!(query instanceof sx.classes._AjaxQuery))
+            {
+                throw new Error("Instance of sx.classes._AjaxQuery was expected.");
+            }
+
+            this.queries.push(query);
+            return query;
+        },
+
+        /**
+         * Есть запросы которые сейчас в процессе выполнения?
+         * @returns {boolean|*|Boolean}
+         */
+        hasExecutingQueries: function()
+        {
+            return Boolean(_.size(this.getExecutingQueries()));
+        },
+
+        /**
+         * Получить запросы которые сейчас в процессе выполнения
+         * @returns {*}
+         */
+        getExecutingQueries: function()
+        {
+            return _.filter(this.queries, function(query)
+            {
+                return query.isExecuting();
+            });
+        },
+
         init: function()
         {
             $(_.bind(this._onDomReady, this));
@@ -394,6 +472,7 @@
                     sx.EventManager.trigger(self.ajaxComplete);
                 })
         },
+
 
         /**
          * Конструируем get запрос

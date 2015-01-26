@@ -1,23 +1,23 @@
 /*!
  *
- * base Entity
  *
- * @date 06.09.14
+ * @date 24.01.2015
  * @copyright skeeks.com
  * @author Semenov Alexander <semenov@skeeks.com>
  */
+
 (function(sx, $, _)
 {
     sx.createNamespace('classes',       sx);
 
-    sx.classes._GlobalLoader = sx.classes.Component.extend({
+    sx.classes._AjaxLoader = sx.classes.Component.extend({
 
         _init: function()
         {
             this.defaultOpts({
-                "enable"    : true, //включен
-                "bindAjax"  : true, //слушать ajax запросы
-                "imageSrc"  : "/app/static/fw/sx/components/global-loader/images/1.gif" //картинка загрузки
+                "enable"    : true,             //включен
+                "bindAjax"  : true,             //слушать ajax запросы
+                "imageSrc"  : "images/1.gif" //картинка загрузки
             });
         },
 
@@ -40,12 +40,18 @@
             {
                 sx.EventManager.bind(sx.ajax.ajaxStart, function(e, data)
                 {
-                    self.show();
+                    if (sx.ajax.hasExecutingQueries())
+                    {
+                        self.show();
+                    }
                 });
 
                 sx.EventManager.bind(sx.ajax.ajaxStop, function(e, data)
                 {
-                    self.hide();
+                    if (!sx.ajax.hasExecutingQueries())
+                    {
+                        self.hide();
+                    }
                 });
             }
         },
@@ -57,12 +63,12 @@
         _buildLoader: function()
         {
             this.$_loader = $("<div>" ,{
-                "id"     :   "sx-classes-GlobalLoader",
+                "id"     :   "sx-classes-ajaxLoader-1",
                 "style"  :   "position: fixed; top: 50%; left: 50%; z-index: 10000; display: none;"
             }).append(
-               $("<img>", {
+               /*$("<img>", {
                    'src'    : this.get("imageSrc")
-               })
+               })*/
             );
 
             $("body").append(this.$_loader);
@@ -94,6 +100,6 @@
         }
     });
 
-    sx.classes.GlobalLoader = sx.classes._GlobalLoader.extend({});
+    sx.classes.AjaxLoader = sx.classes._AjaxLoader.extend({});
 
 })(sx, sx.$, sx._);
