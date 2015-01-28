@@ -20,16 +20,34 @@ class Core extends BaseAsset
     public function init()
     {
         parent::init();
-        \Yii::$app->view->on(View::EVENT_BEGIN_BODY, [$this, 'addInitJs']);
+        //\Yii::$app->view->on(View::EVENT_BEGIN_BODY, [$this, 'addInitJs']);
     }
 
-    public function addInitJs()
+    /**
+     * Registers this asset bundle with a view.
+     * @param View $view the view to be registered with
+     * @return static the registered asset bundle instance
+     */
+    public function registerAssetFiles($view)
+    {
+        parent::registerAssetFiles($view);
+
+        $view->registerJs(<<<JS
+        (function(sx, $, _)
+        {
+            sx.init({});
+        })(sx, sx.$, sx._);
+JS
+);
+    }
+
+    /*public function addInitJs()
     {
         \Yii::$app->view->registerJs(<<<JS
         sx.init({});
 JS
 );
-    }
+    }*/
 
     public $css = [];
     public $js = [

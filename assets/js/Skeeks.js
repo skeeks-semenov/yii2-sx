@@ -48,7 +48,7 @@
         return ns;
     };
 
-    sx.version = "1.0.2";
+    sx.version = "1.0.3";
 
     /**
      * Библиотека готова или нет
@@ -83,7 +83,7 @@
     sx.init = function(data)
     {
         //Мержим конфиги
-        sx.Config.merge(data);
+        sx.config.merge(data);
         //Библиотека sx готова
         sx._ready();
     };
