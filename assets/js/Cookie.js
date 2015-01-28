@@ -12,7 +12,7 @@
      */
     sx.classes._Cookie = sx.classes.Base.extend({
 
-        _globalNamespace: sx.Config.get("cookie").namespace,
+        _globalNamespace: sx.config.get("cookie").namespace,
         _namespace: "",
         _opts: "",
 

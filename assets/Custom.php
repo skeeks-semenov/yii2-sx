@@ -21,5 +21,6 @@ class Custom extends BaseAsset
         'skeeks\sx\assets\Helpers',
         'skeeks\sx\assets\ComponentWindow',
         'skeeks\sx\assets\ComponentModal',
+        'skeeks\sx\assets\ComponentNotifyJgrowl',
     ];
 }

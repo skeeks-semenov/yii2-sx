@@ -140,4 +140,24 @@
 
     sx.classes.modal.Confirm    = sx.classes.modal._Confirm.extend({});
 
+    /**
+     * @param text
+     * @param options
+     * @returns {sx.classes.modal.Alert}
+     */
+    sx.alert = function(text, options)
+    {
+        return new sx.classes.modal.Alert(text, options);
+    }
+
+    /**
+     * @param text
+     * @param options
+     * @returns {sx.classes.modal.Confirm}
+     */
+    sx.confirm = function(text, options)
+    {
+        return new sx.classes.modal.Confirm(text, options);
+    }
+
 })(sx, sx.$, sx._);
