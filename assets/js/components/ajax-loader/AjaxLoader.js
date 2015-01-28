@@ -102,4 +102,17 @@
 
     sx.classes.AjaxLoader = sx.classes._AjaxLoader.extend({});
 
+    /**
+     * Хэндлер ajax, не показывать глобальный лоадер
+     */
+    sx.classes.AjaxHandlerNoLoader = sx.classes.AjaxHandler.extend({
+
+        _init: function()
+        {
+            //Отключаем внутренний подсчет состояния ajax запроса
+            this.getAjaxQuery().set('allowCountExecuting', false);
+        }
+
+    });
+
 })(sx, sx.$, sx._);

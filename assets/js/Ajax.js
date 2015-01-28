@@ -21,36 +21,40 @@
      * @type {*|Function|void}
      * @private
      */
-    sx.classes._AjaxGenericHandler = sx.classes.Component.extend({
-
-        _init: function()
+    sx.classes._AjaxHandler = sx.classes.Component.extend({
+        /**
+         * Установка необходимых данных
+         * @param text
+         * @param opts
+         */
+        construct: function(ajaxQuery, opts)
         {
-            var self = this;
-            this._ajaxQuery = this.get("ajaxQuery");
-
-            if (!this._ajaxQuery instanceof sx.classes._AjaxQuery)
+            if (!ajaxQuery instanceof sx.classes._AjaxQuery)
             {
                 throw new Error("invalid ajaxQuery class");
             }
 
-            this._inited();
+            opts = opts || {};
+            this._ajaxQuery = ajaxQuery;
+
+            this.applyParentMethod(sx.classes.Component, 'construct', [opts]);
         },
+
+        _init: function()
+        {},
 
         /**
          * @returns {sx.classes._AjaxQuery}
          */
-        getAjax: function()
+        getAjaxQuery: function()
         {
             return this._ajaxQuery;
         },
-
-        _inited: function()
-        {}
     });
     /**
      * @type {*|Function|void}
      */
-    sx.classes.AjaxGenericHandler = sx.classes._AjaxGenericHandler.extend({});
+    sx.classes.AjaxHandler = sx.classes._AjaxHandler.extend({});
 
     /**
      * allowCountExecuting
@@ -157,6 +161,10 @@
                  * @private
                  */
                 self._executing    = Number(self._executing - 1);
+                if (self._executing < 0)
+                {
+                    self._executing = 0;
+                }
             });
 
             this._additional = null;
@@ -171,7 +179,7 @@
         {
             var self = this;
 
-            if (this.get('allowCountExecuting', true))
+            if (this.get('allowCountExecuting', true) === true)
             {
                 self._executing = Number(self._executing + 1);
             }
