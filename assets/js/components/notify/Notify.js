@@ -203,7 +203,14 @@
                 })
             ;
         }
+    });
 
+    sx.classes.AjaxHandlerNotifyErrors = sx.classes.AjaxHandler.extend({
+        _init: function()
+        {
+            this.set('allow', ['error']);
+            this.applyParentMethod(sx.classes.AjaxHandler, '_init');
+        }
     });
 
 })(sx, sx.$, sx._);

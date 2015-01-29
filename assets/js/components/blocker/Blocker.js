@@ -108,4 +108,28 @@
         return new sx.classes.Blocker(wrapper, options).block();
     };
 
+    /**
+     * Хэндлер ajax, для показа уведомлений
+     */
+    sx.classes.AjaxHandlerBlocker = sx.classes.AjaxHandler.extend({
+
+        _init: function()
+        {
+            var self = this;
+            this.blocker = new sx.classes.Blocker(this.get('wrapper'), this.toArray());
+
+            //Отключаем внутренний подсчет состояния ajax запроса
+            this.getAjaxQuery()
+                .onBeforeSend(function(e, data)
+                {
+                    self.blocker.block();
+                })
+                .onComplete(function(e, data)
+                {
+                    self.blocker.unblock();
+                })
+            ;
+        }
+
+    });
 })(sx, sx.$, sx._);
