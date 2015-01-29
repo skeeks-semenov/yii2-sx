@@ -75,7 +75,7 @@
          */
         exist: function(name)
         {
-            return this._opts[name] ? true : false;
+            return (typeof this._opts[name] == "undefined") ? false : true;
         },
 
         /**

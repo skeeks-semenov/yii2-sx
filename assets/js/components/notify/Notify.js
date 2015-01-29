@@ -64,7 +64,7 @@
         _show: function()
         {
             this.trigger('afterShow');
-            new Error('this is abstract class');
+            throw new Error('this is abstract class');
             return this;
         },
 
@@ -75,7 +75,7 @@
         _close: function()
         {
             this.trigger('afterClose');
-            new Error('this is abstract class');
+            throw new Error('this is abstract class');
             return this;
         },
 
@@ -172,5 +172,45 @@
             return new sx.classes.notify.Info(text, options);
         },
     };
+
+
+    /**
+     * Хэндлер ajax, для показа уведомлений
+     */
+    sx.classes.AjaxHandlerNotify = sx.classes.AjaxHandler.extend({
+
+        _init: function()
+        {
+            var self = this;
+
+            var allow = this.get('allow', ['error', 'success']);
+
+            //Отключаем внутренний подсчет состояния ajax запроса
+            this.getAjaxQuery()
+                .onError(function(e, data)
+                {
+                    if ( _.indexOf(allow, 'error') >= 0 )
+                    {
+                        sx.notify.error(self.get('error', 'Во время ajax запроса произошла ошибка'));
+                    }
+                })
+                .onSuccess(function(e, data)
+                {
+                    if ( _.indexOf(allow, 'success') >= 0 )
+                    {
+                        sx.notify.success(self.get('success', 'Запрос вполнен успешно'));
+                    }
+                })
+            ;
+        }
+    });
+
+    sx.classes.AjaxHandlerNotifyErrors = sx.classes.AjaxHandler.extend({
+        _init: function()
+        {
+            this.set('allow', ['error']);
+            this.applyParentMethod(sx.classes.AjaxHandler, '_init');
+        }
+    });
 
 })(sx, sx.$, sx._);
