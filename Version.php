@@ -67,7 +67,7 @@ class Version
 
         $version = trim($version);
 
-        if (!preg_match('/^(?P<major>\d+)\.(?P<minor>\d+)\.(?P<maintenance>\d+)$/i', $version, $matches))
+        if (!preg_match('/^(?P<major>\d+)\.(?P<minor>\d+)\.(?P<maintenance>\w+)$/i', $version, $matches))
         {
             throw new InvalidParamException("'{$version}' is invalid version name.");
         }
