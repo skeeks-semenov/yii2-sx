@@ -11,6 +11,19 @@
 
     sx.classes.BlockerJqueyUi = sx.classes._Blocker.extend({
 
+        _init: function()
+        {
+            this.applyParentMethod(sx.classes._Blocker, '_init', []);
+
+            this.defaultOpts({
+                message: "<div style='padding: 5px;'>Подождите...</div>",
+                css: {
+                    border: '1px solid #108acb',
+                    padding: '10px;',
+                }
+            });
+        },
+
         /**
          * @returns {sx.classes.BlockerJqueyUi}
          * @private
