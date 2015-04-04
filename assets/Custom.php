@@ -23,5 +23,6 @@ class Custom extends BaseAsset
         'skeeks\sx\assets\ComponentModal',
         'skeeks\sx\assets\ComponentNotifyJgrowl',
         'skeeks\sx\assets\ComponentBlockerJqueryUi',
+        'skeeks\sx\assets\ComponentAjaxHandlerStandartResponse',
     ];
 }

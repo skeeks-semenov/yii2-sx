@@ -1,10 +1,8 @@
 /*!
- *
- *
- *
- * @date 09.09.14
- * @copyright skeeks.com
  * @author Semenov Alexander <semenov@skeeks.com>
+ * @link http://skeeks.com/
+ * @copyright 2010 SkeekS (СкикС)
+ * @date 04.04.2015
  */
 (function(global, $, _)
 {
@@ -48,7 +46,7 @@
         return ns;
     };
 
-    sx.version = "1.0.4";
+    sx.version = "1.0.7";
 
     /**
      * Библиотека готова или нет
@@ -76,7 +74,6 @@
         return sx._readyTrigger;
     };
 
-
     /**
      * Инициализация важных компонентов
      */
@@ -87,7 +84,6 @@
         //Библиотека sx готова
         sx._ready();
     };
-
 
     /**
      * когда готова sx
@@ -106,4 +102,5 @@
 
         return this;
     };
+
 })(window, jQuery, _);
