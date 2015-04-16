@@ -20,12 +20,8 @@
 
             sx.registerComponent(this);
 
-            $(_.bind(this._domReady, this));
-
-            $(window).load(function()
-            {
-                self._windowReady();
-            });
+            this._windowReadyTrigger    = 0;
+            this._domReadyTrigger       = 0;
 
             this.onDomReady(function()
             {
@@ -35,6 +31,13 @@
             this.onWindowReady(function()
             {
                 self._onWindowReady();
+            });
+
+
+            $(_.bind(this._domReady, this));
+            $(window).load(function()
+            {
+                self._windowReady();
             });
         },
 
@@ -46,8 +49,6 @@
 
         _onWindowReady:   function()
         {},
-
-        _domReadyTrigger: 0,
 
         _domReady: function()
         {
@@ -71,14 +72,10 @@
             return this;
         },
 
-
-        _windowReadyTrigger: 0,
-
         _windowReady: function()
         {
             this._windowReadyTrigger = 1;
             this.trigger("onWindowReady", this);
-            this._onWindowReady();
         },
 
         /**
@@ -89,11 +86,12 @@
         {
             if (this._windowReadyTrigger == 1)
             {
-                callback(this, this);
+                callback(this);
             } else
             {
                 this.bind("onWindowReady", callback);
             }
+
             return this;
         },
 
