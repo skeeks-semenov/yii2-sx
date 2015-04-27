@@ -105,6 +105,19 @@ class String
     }
 
 
+    /**
+     * @param $str
+     * @param $start
+     * @param null $length
+     * @return string
+     */
+    static public function htmlspecialchars($str, $start, $length = null)
+    {
+        $encoding = \Yii::$app->charset;
+        return htmlspecialchars($str, $start, $length, $encoding);
+    }
+
+
 
     /**
      * @param $data
