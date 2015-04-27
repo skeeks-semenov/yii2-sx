@@ -291,8 +291,21 @@
 
         getData: function(data)
         {
-            this.get("data", {});
+            return this.get("data", {});
         },
+
+        /**
+         * @param data
+         * @returns {sx.classes._AjaxQuery}
+         */
+        mergeData: function(data)
+        {
+            data = data || {};
+            var newData = _.extend(this.getData(), data);
+            this.setData(newData);
+            return this;
+        },
+
 
         /**
          * @returns {string}

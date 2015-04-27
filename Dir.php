@@ -225,7 +225,7 @@ class Dir
     }
 
     /**
-     * @return array<File>
+     * @return File[]
      */
     public function findFiles()
     {
