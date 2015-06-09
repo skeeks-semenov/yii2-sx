@@ -138,4 +138,23 @@ class String
     {
         return unserialize(gzuncompress(base64_decode(str_pad(strtr($string, '-_', '+/'), strlen($string) % 4, '=', STR_PAD_RIGHT))));
     }
+
+
+    /**
+     * @param $data
+     * @return string
+     */
+    static public function base64EncodeUrl($string)
+    {
+        return rtrim(strtr(base64_encode($string), '+/', '-_'), '=');
+    }
+
+    /**
+     * @param $string
+     * @return mixed
+     */
+    static public function base64DecodeUrl($string)
+    {
+        return base64_decode(str_pad(strtr($string, '-_', '+/'), strlen($string) % 4, '=', STR_PAD_RIGHT));
+    }
 }
