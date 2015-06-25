@@ -35,10 +35,18 @@
 
 
             $(_.bind(this._domReady, this));
-            $(window).load(function()
+
+            if (document.readyState == 'complete')
             {
                 self._windowReady();
-            });
+            } else
+            {
+                $(window).load(function()
+                {
+                    self._windowReady();
+                });
+            }
+
         },
 
         _init:         function()
