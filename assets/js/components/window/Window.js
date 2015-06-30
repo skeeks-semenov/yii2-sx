@@ -275,6 +275,10 @@
             //Если есть родительское окно, слушае когда оно закроется, как только закроется, закроем и это
             var self = this;
             this._timer = null;
+
+            //Закрыть это окно, елси закроется родительское.
+            this.listenParent = false;
+
             if (this.openerWindow())
             {
                 this._timer = setInterval(function()
@@ -282,7 +286,10 @@
                     if(!self.openerWindow())
                     {
                         clearInterval(self._timer);
-                        window.close();
+                        if (self.listenParent)
+                        {
+                            window.close();
+                        }
                     }
                 }, 1000);
             }
