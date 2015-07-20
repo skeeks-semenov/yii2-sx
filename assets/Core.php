@@ -9,7 +9,8 @@
  * @since 1.0.0
  */
 namespace skeeks\sx\assets;
-use yii\web\View;
+use skeeks\cms\helpers\FileHelper;
+use skeeks\sx\File;
 
 /**
  * Class Core
@@ -17,12 +18,6 @@ use yii\web\View;
  */
 class Core extends BaseAsset
 {
-    public function init()
-    {
-        parent::init();
-        //\Yii::$app->view->on(View::EVENT_BEGIN_BODY, [$this, 'addInitJs']);
-    }
-
     /**
      * Registers this asset bundle with a view.
      * @param View $view the view to be registered with
@@ -41,16 +36,9 @@ JS
 );
     }
 
-    /*public function addInitJs()
-    {
-        \Yii::$app->view->registerJs(<<<JS
-        sx.init({});
-JS
-);
-    }*/
-
     public $css = [];
-    public $js = [
+
+    /*public $js = [
         'js/Skeeks.js',
         'js/Classes.js',
         'js/Entity.js',
@@ -60,7 +48,16 @@ JS
         'js/Cookie.js',
         'js/Component.js',
         'js/Ajax.js',
+    ];*/
+
+    /**
+     * @see http://closure-compiler.appspot.com/home
+     * @var array
+     */
+    public $js = [
+        'distr/1.1.5/sx.core.min.js',
     ];
+
     public $depends = [
         'yii\web\YiiAsset',
         'skeeks\sx\assets\Undescore',

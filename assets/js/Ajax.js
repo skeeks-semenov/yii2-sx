@@ -29,7 +29,7 @@
          */
         construct: function(ajaxQuery, opts)
         {
-            if (!ajaxQuery instanceof sx.classes._AjaxQuery)
+            if (!(ajaxQuery instanceof sx.classes._AjaxQuery))
             {
                 throw new Error("invalid ajaxQuery class");
             }
@@ -49,7 +49,7 @@
         getAjaxQuery: function()
         {
             return this._ajaxQuery;
-        },
+        }
     });
     /**
      * @type {*|Function|void}
