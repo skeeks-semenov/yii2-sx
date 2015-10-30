@@ -320,10 +320,17 @@
          */
         openerSx: function()
         {
-            if (this.openerWindow())
+            try
             {
-                return this.openerWindow().sx;
+                if (this.openerWindow())
+                {
+                    return this.openerWindow().sx;
+                }
+            } catch (e)
+            {
+                return null;
             }
+
 
             return null;
         },
