@@ -10,6 +10,7 @@
  */
 namespace skeeks\sx;
 use \skeeks\sx\Exception;
+use yii\helpers\FileHelper;
 
 /**
  * Class File
@@ -160,14 +161,7 @@ class Dir
      */
     public function remove()
     {
-        if (PHP_OS === 'Windows')
-        {
-            exec("rd /s /q {$this->getPath()}");
-        }
-        else
-        {
-            exec("rm -rf {$this->getPath()}");
-        }
+        FileHelper::removeDirectory($this->getPath());
 
         return ! (bool) $this->isExist();
     }
@@ -177,14 +171,8 @@ class Dir
      */
     public function clear()
     {
-        if (PHP_OS === 'Windows')
-        {
-            exec("rd /s /q {$this->getPath()}/*");
-        }
-        else
-        {
-            exec("rm -rf {$this->getPath()}/*");
-        }
+        FileHelper::removeDirectory($this->getPath());
+        FileHelper::createDirectory($this->getPath());
 
         return $this;
     }
