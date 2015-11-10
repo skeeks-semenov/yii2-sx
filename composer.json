@@ -1,14 +1,14 @@
 {
 	"name": "skeeks/yii2-sx",
-	"description": "Skeeks framework for yii framework",
+	"description": "Javascript framework by SkeekS",
 	"keywords": ["yii", "app", "skeeks", "sx", "framework"],
-    "homepage": "http://www.skeeks.com/",
+    "homepage": "http://skeeks.com/",
 	"type": "yii2-extension",
-	"license": "BSD-3-Clause",
+	"license": "GPL-2.0+",
 	"support": {
-        "issues": "http://www.skeeks.com/",
-        "wiki": "http://cms.skeeks.com/wiki/",
-        "source": "http://git.skeeks.com/skeeks/yii2-sx"
+        "issues": "http://skeeks.com/",
+        "wiki": "http://dev.cms.skeeks.com/docs/dev/javascript",
+        "source": "https://github.com/skeeks-semenov/yii2-sx"
     },
 	"authors": [
 		{
