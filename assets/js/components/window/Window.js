@@ -135,6 +135,19 @@
 
             return this;
         },
+        
+        /**
+         * @returns {sx.classes._Window}
+         */
+        close: function()
+        {
+            if (this.getOpenedWindow())
+            {
+                this.getOpenedWindow().close();
+            }
+
+            return this;
+        },
 
         /**
          * @returns {boolean}
