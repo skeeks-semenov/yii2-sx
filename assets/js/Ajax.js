@@ -1,12 +1,9 @@
 /*!
- *
- * Все что нужно для работы с ajax запросами
- *
- * @date 24.01.2015
- * @copyright skeeks.com
  * @author Semenov Alexander <semenov@skeeks.com>
+ * @link http://skeeks.com/
+ * @copyright 2010 SkeekS (СкикС)
+ * @date 05.10.2016
  */
-
 (function(sx, $, _)
 {
     sx.createNamespace('classes', sx);

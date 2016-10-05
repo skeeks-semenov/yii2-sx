@@ -1,10 +1,8 @@
 /*!
- *
- * Основной конфиг приложения js
- *
- * @date 09.09.14
- * @copyright skeeks.com
  * @author Semenov Alexander <semenov@skeeks.com>
+ * @link http://skeeks.com/
+ * @copyright 2010 SkeekS (СкикС)
+ * @date 05.10.2016
  */
 (function(sx, $, _)
 {
@@ -26,14 +24,7 @@
                 {
                     namespace: "sx"
                 },
-                user:                   //Данные текущего пользователя
-                {}
             })
-        },
-
-        getUserData: function()
-        {
-            return this.get("user");
         },
 
         /**

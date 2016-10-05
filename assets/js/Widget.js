@@ -1,18 +1,15 @@
 /*!
- *
- *
- *
- * @date 06.11.2014
- * @copyright skeeks.com
  * @author Semenov Alexander <semenov@skeeks.com>
+ * @link http://skeeks.com/
+ * @copyright 2010 SkeekS (бъшъб)
+ * @date 05.10.2016
  */
-
-
 (function(sx, $, _)
 {
     sx.createNamespace('classes', sx);
 
     /**
+     * TODO: is deprecated
     * @type {void|Function|*}
     */
     sx.classes.Widget = sx.classes.Component.extend({

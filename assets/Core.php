@@ -44,7 +44,6 @@ JS
         'js/Entity.js',
         'js/EventManager.js',
         'js/Config.js',
-        'js/Debug.js',
         'js/Cookie.js',
         'js/Component.js',
         'js/Ajax.js',
@@ -55,7 +54,7 @@ JS
      * @var array
      */
     public $js = [
-        'distr/1.1.5/sx.core.min.js',
+        'distr/1.2/skeeks-core.min.js',
     ];
 
     public $depends = [

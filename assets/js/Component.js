@@ -1,6 +1,9 @@
-/* 
+/*!
  * @author Semenov Alexander <semenov@skeeks.com>
-*/ 
+ * @link http://skeeks.com/
+ * @copyright 2010 SkeekS (СкикС)
+ * @date 05.10.2016
+ */
 (function(sx, $, _, window)
 {
     sx.createNamespace('classes', sx);
