@@ -17,7 +17,7 @@ use skeeks\sx\Filter;
 class SeoPageName
     extends Filter
 {
-    public $maxLenth = 64;
+    public $maxLength = 64;
     /**
      * @param string $value
      * @return string
@@ -31,9 +31,9 @@ class SeoPageName
             $value = $value . "-" . md5(microtime());
         }
 
-        if (strlen($value) > $this->maxLenth)
+        if (strlen($value) > $this->maxLength)
         {
-            $value = substr($value, 0, $this->maxLenth);
+            $value = substr($value, 0, $this->maxLength);
         }
 
         $filter = new Translit();
@@ -56,7 +56,7 @@ class SeoPageName
 
 
         //Небольшая рекурсия
-        if (strlen($value) < 2 || strlen($value) > $this->maxLenth)
+        if (strlen($value) < 2 || strlen($value) > $this->maxLength)
         {
             $value = $this->filter($value);
         }
