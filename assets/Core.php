@@ -9,8 +9,6 @@
  * @since 1.0.0
  */
 namespace skeeks\sx\assets;
-use skeeks\cms\helpers\FileHelper;
-use skeeks\sx\File;
 
 /**
  * Class Core
