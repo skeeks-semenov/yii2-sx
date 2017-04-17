@@ -9,8 +9,8 @@
  * @since 1.0.0
  */
 namespace skeeks\sx\assets;
-use skeeks\cms\base\AssetBundle;
 use skeeks\sx\File;
+use yii\web\AssetBundle;
 
 /**
  * Class BaseAsset
@@ -58,5 +58,15 @@ abstract class BaseAsset extends AssetBundle
             $file = new File($fileMinJs);
             $file->make($fileContent);
         }
+    }
+
+    /**
+     * @param string $asset
+     * @return string
+     * @throws \yii\base\InvalidConfigException
+     */
+    static public function getAssetUrl($asset)
+    {
+        return \Yii::$app->assetManager->getAssetUrl(\Yii::$app->assetManager->getBundle(static::className()), $asset);
     }
 }
