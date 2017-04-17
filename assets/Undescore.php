@@ -9,7 +9,7 @@
  * @since 1.0.0
  */
 namespace skeeks\sx\assets;
-use skeeks\cms\base\AssetBundle;
+use yii\web\AssetBundle;
 /**
  * Class UndescoreAsset
  * @package skeeks\sx
