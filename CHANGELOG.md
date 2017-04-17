@@ -3,6 +3,7 @@
 
 1.2.1
 -----------------
+  * Remove skeeks cms dependency
   * BaseAsset updated
   * Updated seo filter
 
