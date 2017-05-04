@@ -18,7 +18,7 @@ use yii\widgets\ActiveForm;
  *
  * @package skeeks\sx\helpers
  */
-class BackendResponseHelper extends Component
+class ResponseHelper extends Component
 {
     /**
      * @var bool

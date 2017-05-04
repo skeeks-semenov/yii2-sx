@@ -7,13 +7,14 @@
  * @copyright 2010-2014 SkeekS (Sx)
  * @date 07.11.2014
  * @since 1.0.0
- * @deprecated
  */
 namespace skeeks\sx\validate;
 
 /**
  * Interface IResult
  * @package skeeks\sx\validate
+ *
+ * @deprecated
  */
 interface IResult
 {

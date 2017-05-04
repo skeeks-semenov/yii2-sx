@@ -15,6 +15,8 @@ namespace skeeks\sx\traits;
 /**
  * Class HasWritableOptions
  * @package skeeks\sx\traits
+ *
+ * @deprecated
  */
 trait HasWritableOptions
 {

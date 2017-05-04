@@ -7,7 +7,6 @@
  * @copyright 2010-2014 SkeekS (Sx)
  * @date 22.10.2014
  * @since 1.0.0
- * @deprecated
  */
 namespace skeeks\sx;
 use \skeeks\sx\Exception;
@@ -16,6 +15,8 @@ use yii\helpers\FileHelper;
 /**
  * Class File
  * @package skeeks\sx
+ *
+ * @deprecated
  */
 class File
 {

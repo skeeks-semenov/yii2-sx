@@ -7,7 +7,6 @@
  * @copyright 2010-2014 SkeekS (Sx)
  * @date 07.11.2014
  * @since 1.0.0
- * @deprecated
  */
 namespace skeeks\sx\validators;
 use skeeks\sx\validate\Exception;
@@ -17,6 +16,8 @@ use skeeks\sx\validate\Exception;
  *
  * @since  1.0
  * @author Semenov Alexander <semenov@skeeks.com>
+ *
+ * @deprecated
  */
 abstract class Chain
     extends Validator

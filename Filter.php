@@ -7,12 +7,13 @@
  * @copyright 2010-2014 SkeekS (Sx)
  * @date 20.10.2014
  * @since 1.0.0
- * @deprecated
  */
 namespace skeeks\sx;
 /**
  * Interface Ix_Filter
  * @package skeeks\sx
+ *
+ * @deprecated
  */
 interface Ix_Filter
 {
@@ -27,6 +28,8 @@ interface Ix_Filter
 /**
  * Class Filter
  * @package skeeks\sx
+ *
+ * @deprecated
  */
 abstract class Filter
     implements Ix_Filter

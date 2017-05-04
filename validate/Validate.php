@@ -7,7 +7,6 @@
  * @copyright 2010-2014 SkeekS (Sx)
  * @date 07.11.2014
  * @since 1.0.0
- * @deprecated
  */
 namespace skeeks\sx\validate;
 use skeeks\sx\validators\IValidator;
@@ -17,6 +16,8 @@ use skeeks\sx\validators\Validator;
 /**
  * Class Validate
  * @package skeeks\sx
+ *
+ * @deprecated
  */
 class Validate
 {

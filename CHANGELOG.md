@@ -3,7 +3,7 @@
 
 1.2.2.pre
 -----------------
-  * Add skeeks\sx\helpers\BackendResponseHelper
+  * Add skeeks\sx\helpers\ResponseHelper
   * The declaration deprecated
 
 1.2.1

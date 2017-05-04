@@ -7,12 +7,13 @@
  * @copyright 2010-2014 SkeekS (Sx)
  * @date 29.10.2014
  * @since 1.0.0
- * @deprecated
  */
 namespace skeeks\sx;
 /**
  * Class Entity
  * @package skeeks\sx
+ *
+ * @deprecated
  */
 class Entity
 {

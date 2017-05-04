@@ -7,13 +7,14 @@
  * @copyright 2010-2014 SkeekS (Sx)
  * @date 20.10.2014
  * @since 1.0.0
- * @deprecated
  */
 namespace skeeks\sx;
 
 /**
  * Class Exception
  * @package skeeks\sx
+ *
+ * @deprecated
  */
 class Exception
     extends \yii\base\Exception

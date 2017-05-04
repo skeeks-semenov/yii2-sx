@@ -7,7 +7,6 @@
  * @copyright 2010-2014 SkeekS (Sx)
  * @date 07.11.2014
  * @since 1.0.0
- * @deprecated
  */
 namespace skeeks\sx\validators;
 use skeeks\sx\validate\Result;
@@ -15,6 +14,8 @@ use skeeks\sx\validate\Result;
 /**
  * Class ChainOr
  * @package skeeks\sx\validators
+ *
+ * @deprecated
  */
 class ChainOr
     extends Chain

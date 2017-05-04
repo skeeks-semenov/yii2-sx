@@ -14,6 +14,8 @@ namespace skeeks\sx\traits;
 /**
  * Class InstanceObject
  * @package skeeks\sx\traits
+ *
+ * @deprecated
  */
 trait InstanceObject
 {

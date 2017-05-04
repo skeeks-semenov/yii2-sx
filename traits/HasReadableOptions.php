@@ -13,6 +13,8 @@ namespace skeeks\sx\traits;
 /**
  * Class Entity
  * @package skeeks\sx\traits
+ *
+ * @deprecated
  */
 trait HasReadableOptions
 {

@@ -14,6 +14,8 @@ namespace skeeks\sx\filters\string;
 use skeeks\sx\Filter;
 /**
  * Class Cx_Filter_String_Strtoupper
+ *
+ * @deprecated
  */
 class Translit
     extends Filter
