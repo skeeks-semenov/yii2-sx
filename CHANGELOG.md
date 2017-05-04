@@ -1,7 +1,7 @@
 Процесс разработки проекта.
 ==============
 
-1.2.2.pre
+1.2.2
 -----------------
   * Add skeeks\sx\helpers\ResponseHelper
   * The declaration deprecated
