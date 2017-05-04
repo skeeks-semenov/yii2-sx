@@ -8,6 +8,7 @@
 namespace skeeks\sx\helpers;
 
 use yii\base\Component;
+use yii\web\Response;
 use yii\widgets\ActiveForm;
 
 /**
