@@ -1,6 +1,10 @@
 Процесс разработки проекта.
 ==============
 
+1.2.2.pre
+-----------------
+  * The declaration deprecated
+
 1.2.1
 -----------------
   * Remove skeeks cms dependency
