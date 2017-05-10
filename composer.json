@@ -18,7 +18,7 @@
 	],
 	"require": {
 		"yiisoft/yii2": "*",
-        "bower-asset/underscore": "*"
+        "bower-asset/underscore": "^1.8"
 	},
 
     "autoload": {

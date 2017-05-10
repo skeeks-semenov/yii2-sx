@@ -1,6 +1,10 @@
 Процесс разработки проекта.
 ==============
 
+1.2.3
+-----------------
+  * "bower-asset/underscore": "^1.8"
+
 1.2.2
 -----------------
   * Add skeeks\sx\helpers\ResponseHelper
