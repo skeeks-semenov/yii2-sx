@@ -85,7 +85,7 @@ class ResponseHelper extends Component
      * @param Model $model
      * @return array
      */
-    public function ajaxValidateForm(Model $model)
+    public function ajaxValidateForm($model)
     {
         $model->load(\Yii::$app->request->post());
         return ActiveForm::validate($model);
