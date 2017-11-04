@@ -4,7 +4,7 @@
 	"keywords": ["yii", "app", "skeeks", "sx", "framework"],
     "homepage": "http://skeeks.com/",
 	"type": "yii2-extension",
-	"license": "GPL-2.0+",
+	"license": "GPL-3.0+",
 	"support": {
         "issues": "http://skeeks.com/",
         "wiki": "http://dev.cms.skeeks.com/docs/dev/javascript",
