@@ -44,8 +44,7 @@
                 self._windowReady();
             } else
             {
-                $(window).load(function()
-                {
+                $(window).on("load", function() {
                     self._windowReady();
                 });
             }

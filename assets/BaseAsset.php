@@ -23,7 +23,7 @@ abstract class BaseAsset extends AssetBundle
     public $js = [];
     public $depends = [];
 
-    public function init()
+    /*public function init()
     {
         parent::init();
 
@@ -58,7 +58,7 @@ abstract class BaseAsset extends AssetBundle
             $file = new File($fileMinJs);
             $file->make($fileContent);
         }
-    }
+    }*/
 
     /**
      * @param string $asset
