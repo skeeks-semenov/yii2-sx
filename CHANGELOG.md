@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.3.0.1
+-----------------
+  * Fixed bug
+  
 1.3.0
 -----------------
   * Removed depricated filters

@@ -18,7 +18,7 @@ use yii\web\AssetBundle;
  */
 abstract class BaseAsset extends AssetBundle
 {
-    public $sourcePath = '@vendor/skeeks/yii2-sx/assets';
+    public $sourcePath = '@skeeks/sx/assets';
     public $css = [];
     public $js = [];
     public $depends = [];
