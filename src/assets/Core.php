@@ -26,8 +26,7 @@ class Core extends BaseAsset
         parent::registerAssetFiles($view);
 
         $view->registerJs(<<<JS
-        (function(sx, $, _)
-        {
+        (function(sx, $, _){
             sx.init({});
         })(sx, sx.$, sx._);
 JS
@@ -36,7 +35,7 @@ JS
 
     public $css = [];
 
-    public $js = [
+    /*public $js = [
         'js/Skeeks.js',
         'js/Classes.js',
         'js/Entity.js',
@@ -45,15 +44,15 @@ JS
         'js/Cookie.js',
         'js/Component.js',
         'js/Ajax.js',
-    ];
+    ];*/
 
     /**
      * @see http://closure-compiler.appspot.com/home
      * @var array
      */
-    /*public $js = [
-        'distr/1.2/skeeks-core.min.js',
-    ];*/
+    public $js = [
+        'distr/skeeks-core.min.js',
+    ];
 
     public $depends = [
         'yii\web\YiiAsset',

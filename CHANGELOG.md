@@ -1,6 +1,11 @@
-Процесс разработки проекта.
-==============
+Changelog
+=========
 
+1.3.0
+-----------------
+  * Removed depricated filters
+  * Compatibility with jquery 3.0
+  
 1.2.5
 -----------------
   * Add mb_pathinfo
