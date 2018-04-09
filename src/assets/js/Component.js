@@ -16,12 +16,6 @@
             var self = this;
 
             this._eventManager  = null;
-            /**
-             * @deprecated
-             * @type {null}
-             * @private
-             */
-            this._cookieManager = null;
 
             this._validate();
             this._init();
@@ -53,7 +47,6 @@
                     self._windowReady();
                 });
             }
-
         },
 
         _init:         function()
@@ -112,22 +105,6 @@
 
 
 
-
-        /**
-         * Удобная работа с cookies
-         * @returns {Skeeks.classes.Cookie}
-         * @deprecated
-         */
-        getCookieManager: function()
-        {
-            if (this._cookieManager === null)
-            {
-                this._cookieManager = new sx.classes.Cookie();
-            }
-
-            return this._cookieManager;
-        },
-
         /**
          * Свой внутренние eventmanager
          * @returns {Skeeks.classes.EventManager}
@@ -178,7 +155,8 @@
         hooks: function()
         {
             return this.getEventManager().hooks();
-        }
+        },
+
     });
 
     sx.classes.Component = sx.classes._Component.extend({});

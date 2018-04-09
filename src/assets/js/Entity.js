@@ -193,6 +193,16 @@
         defaultOpts: function(data)
         {
             return this.mergeDefaults(data);
+        },
+
+        /**
+         * @param name
+         * @returns {sx.classes._Entity}
+         */
+        deleteOpt: function(name)
+        {
+            delete this._opts[name];
+            return this;
         }
     });
 

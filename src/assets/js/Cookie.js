@@ -10,16 +10,24 @@
      * @type {*|Function|void}
      * @private
      */
-    sx.classes._Cookie = sx.classes.Base.extend({
-
-        _globalNamespace: sx.config.get("cookie").namespace,
-        _namespace: "",
-        _opts: "",
+    sx.classes._Cookie = sx.classes.Component.extend({
 
         construct: function(namespace, opts)
         {
             this._namespace = namespace || "";
-            this._opts = opts || {};
+            this.applyParentMethod(sx.classes.Component, 'construct', [opts]);
+        },
+
+        _init: function()
+        {
+            if (this.exist('globalNamespace')) {
+                this._globalNamespace = this.get('globalNamespace');
+                this.deleteOpt('globalNamespace');
+            } elseif (sx.config.get("cookie").namespace) {
+                this._globalNamespace = sx.config.get("cookie").namespace;
+            } else {
+                this._globalNamespace = '';
+            }
         },
 
         set: function(name, value, options)
@@ -119,7 +127,8 @@
 
         _defaultOptions:
         {
-            path: "/"
+            path: "/",
+            expires: 365
         },
 
         /**

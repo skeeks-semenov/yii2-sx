@@ -3,6 +3,7 @@ Changelog
 
 1.4.pre
 -----------------
+  * sx.cookie expires 1 year by default
   * Component cookie is @deprecated
 
 1.3.0.1

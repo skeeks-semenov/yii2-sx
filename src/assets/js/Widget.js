@@ -1,7 +1,7 @@
 /*!
  * @author Semenov Alexander <semenov@skeeks.com>
  * @link http://skeeks.com/
- * @copyright 2010 SkeekS (ÑêèêÑ)
+ * @copyright 2010 SkeekS (ï¿½ï¿½ï¿½ï¿½ï¿½)
  * @date 05.10.2016
  */
 (function(sx, $, _)
@@ -9,7 +9,7 @@
     sx.createNamespace('classes', sx);
 
     /**
-     * TODO: is deprecated
+    * @deprecated
     * @type {void|Function|*}
     */
     sx.classes.Widget = sx.classes.Component.extend({
