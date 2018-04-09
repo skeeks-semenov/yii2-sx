@@ -16,6 +16,11 @@
             var self = this;
 
             this._eventManager  = null;
+            /**
+             * @deprecated
+             * @type {null}
+             * @private
+             */
             this._cookieManager = null;
 
             this._validate();
@@ -111,6 +116,7 @@
         /**
          * Удобная работа с cookies
          * @returns {Skeeks.classes.Cookie}
+         * @deprecated
          */
         getCookieManager: function()
         {
