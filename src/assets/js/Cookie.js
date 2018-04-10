@@ -23,7 +23,7 @@
             if (this.exist('globalNamespace')) {
                 this._globalNamespace = this.get('globalNamespace');
                 this.deleteOpt('globalNamespace');
-            } elseif (sx.config.get("cookie").namespace) {
+            } else if (sx.config.get("cookie").namespace) {
                 this._globalNamespace = sx.config.get("cookie").namespace;
             } else {
                 this._globalNamespace = '';
