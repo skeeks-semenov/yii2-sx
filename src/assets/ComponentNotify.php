@@ -51,7 +51,7 @@ class ComponentNotify extends BaseAsset
         $view->registerJs(<<<JS
         (function(sx, $, _)
         {
-            sx.config.merge({$options});
+            sx.Config.merge({$options});
         })(sx, sx.$, sx._);
 JS
 );

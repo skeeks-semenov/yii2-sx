@@ -51,6 +51,6 @@
     /**
      * @type {Skeeks.classes.Config}
      */
-    sx.config = new sx.classes.Config();
+    sx.Config = new sx.classes.Config();
 
 })(Skeeks, Skeeks.$, Skeeks._);

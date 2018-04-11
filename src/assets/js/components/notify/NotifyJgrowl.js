@@ -66,7 +66,7 @@
          */
         getImageSrc: function()
         {
-            return sx.config.get('notify').imageError;
+            return sx.Config.get('notify').imageError;
         }
     });
 
@@ -76,7 +76,7 @@
          */
         getImageSrc: function()
         {
-            return sx.config.get('notify').imageSuccess;
+            return sx.Config.get('notify').imageSuccess;
         }
     });
 
@@ -86,7 +86,7 @@
          */
         getImageSrc: function()
         {
-            return sx.config.get('notify').imageInfo;
+            return sx.Config.get('notify').imageInfo;
         }
     });
 
@@ -97,7 +97,7 @@
          */
         getImageSrc: function()
         {
-            return sx.config.get('notify').imageWarning;
+            return sx.Config.get('notify').imageWarning;
         }
     });
 
@@ -107,7 +107,7 @@
          */
         getImageSrc: function()
         {
-            return sx.config.get('notify').imageFail;
+            return sx.Config.get('notify').imageFail;
         }
     });
 

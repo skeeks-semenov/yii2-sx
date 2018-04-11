@@ -66,7 +66,7 @@
      */
     sx.onReady(function()
     {
-        sx.users.Current = new sx.classes.User(sx.config.getUserData());
+        sx.users.Current = new sx.classes.User(sx.Config.getUserData());
     });
 
 })(Skeeks, Skeeks.$, Skeeks._);

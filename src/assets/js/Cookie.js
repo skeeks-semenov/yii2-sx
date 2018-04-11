@@ -6,6 +6,7 @@
     sx.createNamespace('classes', sx);
 
     /**
+     * TODO: доправить позже!
      * Базовый класс для работы с cookies
      * @type {*|Function|void}
      * @private
@@ -23,8 +24,8 @@
             if (this.exist('globalNamespace')) {
                 this._globalNamespace = this.get('globalNamespace');
                 this.deleteOpt('globalNamespace');
-            } else if (sx.config.get("cookie").namespace) {
-                this._globalNamespace = sx.config.get("cookie").namespace;
+            } else if (sx.Config.get("cookie").namespace) {
+                this._globalNamespace = sx.Config.get("cookie").namespace;
             } else {
                 this._globalNamespace = '';
             }

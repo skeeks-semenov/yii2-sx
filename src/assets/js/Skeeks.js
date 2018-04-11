@@ -1,9 +1,9 @@
-/*!
- * @author Semenov Alexander <semenov@skeeks.com>
- * @link http://skeeks.com/
- * @copyright 2010 SkeekS (СкикС)
- * @date 04.04.2015
- */
+ /**
+  * @link https://cms.skeeks.com/
+  * @copyright Copyright (c) 2010 SkeekS
+  * @license https://cms.skeeks.com/license/
+  * @author Semenov Alexander <semenov@skeeks.com>
+  */
 (function(global, $, _)
 {
     if (global.Skeeks || global.sx)
@@ -80,7 +80,7 @@
     sx.init = function(data)
     {
         //Мержим конфиги
-        sx.config.merge(data);
+        sx.Config.merge(data);
         //Библиотека sx готова
         sx._ready();
     };
