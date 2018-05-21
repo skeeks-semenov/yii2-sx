@@ -7,6 +7,10 @@ SkeekS Javascript framework
 Можно использовать все что в папке assets, все остальное is depricated и будет удалено в более поздных версиях!!!
 
 
+[![Latest Stable Version](https://img.shields.io/packagist/v/skeeks/yii2-sx.svg)](https://packagist.org/packages/skeeks/yii2-sx)
+[![Total Downloads](https://img.shields.io/packagist/dt/skeeks/yii2-sx.svg)](https://packagist.org/packages/skeeks/yii2-sx)
+
+
 Installation
 ------------
 
