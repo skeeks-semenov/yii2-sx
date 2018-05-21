@@ -20,12 +20,14 @@ class Custom extends BaseAsset
         'js/helpers/Helpers.js',
         'js/components/window/Window.js',
         'js/components/modal/Modal.js',
+        'js/components/blocker/Blocker.js',
+        'js/components/blocker/BlockerJqueryUi.js',
+        'js/components/ajax-handlers/AjaxHandlerStandartRespose.js',
     ];
 
     public $depends = [
         'skeeks\sx\assets\Core',
         'skeeks\sx\assets\ComponentNotifyJgrowl',
-        'skeeks\sx\assets\ComponentBlockerJqueryUi',
-        'skeeks\sx\assets\ComponentAjaxHandlerStandartResponse',
+        'skeeks\sx\assets\JqueryBlockUi',
     ];
 }
