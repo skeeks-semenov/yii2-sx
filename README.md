@@ -1,7 +1,8 @@
 SkeekS Javascript framework
 ===========================
 
-* [Docs](http://dev.cms.skeeks.com/docs/dev/javascript)
+* [Docs](https://docs.cms.skeeks.com/en/latest/javascript.html)
+
 
 Можно использовать все что в папке assets, все остальное is depricated и будет удалено в более поздных версиях!!!
 
