@@ -15,12 +15,15 @@ namespace skeeks\sx\assets;
  */
 class Custom extends BaseAsset
 {
+    public $js = [
+        'js/Widget.js',
+        'js/helpers/Helpers.js',
+        'js/components/window/Window.js',
+        'js/components/modal/Modal.js',
+    ];
+
     public $depends = [
         'skeeks\sx\assets\Core',
-        'skeeks\sx\assets\Widget',
-        'skeeks\sx\assets\Helpers',
-        'skeeks\sx\assets\ComponentWindow',
-        'skeeks\sx\assets\ComponentModal',
         'skeeks\sx\assets\ComponentNotifyJgrowl',
         'skeeks\sx\assets\ComponentBlockerJqueryUi',
         'skeeks\sx\assets\ComponentAjaxHandlerStandartResponse',
