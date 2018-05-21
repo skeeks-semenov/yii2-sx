@@ -46,7 +46,7 @@
         return ns;
     };
 
-    sx.version = "1.4.0.pre";
+    sx.version = "1.4.0";
 
     /**
      * Библиотека готова или нет
