@@ -9,7 +9,7 @@
  * @since 1.0.0
  */
 namespace skeeks\sx;
-use \skeeks\sx\Exception;
+use yii\base\Exception;
 
 
 /**
@@ -21,7 +21,21 @@ use \skeeks\sx\Exception;
 class FileSize
 {
     use traits\Entity;
-    use traits\InstanceObject;
+
+    /**
+     * @param $file
+     * @return static
+     */
+    static public function object($file = null)
+    {
+        if ($file instanceof static)
+        {
+            return $file;
+        } else
+        {
+            return new static($file);
+        }
+    }
 
     public function __construct($sizeBytes = 0)
     {

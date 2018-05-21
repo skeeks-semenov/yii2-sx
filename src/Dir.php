@@ -9,7 +9,7 @@
  * @since 1.0.0
  */
 namespace skeeks\sx;
-use \skeeks\sx\Exception;
+use yii\base\Exception;
 use yii\helpers\FileHelper;
 
 /**
@@ -21,7 +21,21 @@ use yii\helpers\FileHelper;
 class Dir
 {
     use traits\Entity;
-    use traits\InstanceObject;
+
+    /**
+     * @param $file
+     * @return static
+     */
+    static public function object($file = null)
+    {
+        if ($file instanceof static)
+        {
+            return $file;
+        } else
+        {
+            return new static($file);
+        }
+    }
 
     /**
      * @param bool $autoOpen

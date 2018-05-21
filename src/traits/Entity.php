@@ -9,7 +9,7 @@
  * @since 1.0.0
  */
 namespace skeeks\sx\traits;
-use \skeeks\sx\Exception;
+use yii\base\Exception;
 /**
  * Class Entity
  * @package skeeks\sx\traits

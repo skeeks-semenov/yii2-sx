@@ -9,7 +9,7 @@
  * @since 1.0.0
  */
 namespace skeeks\sx;
-use \skeeks\sx\Exception;
+use yii\base\Exception;
 
 use yii\helpers\FileHelper;
 /**
@@ -21,8 +21,21 @@ use yii\helpers\FileHelper;
 class File
 {
     use traits\Entity;
-    use traits\HasWritableOptions;
-    use traits\InstanceObject;
+
+    /**
+     * @param $file
+     * @return static
+     */
+    static public function object($file = null)
+    {
+        if ($file instanceof static)
+        {
+            return $file;
+        } else
+        {
+            return new static($file);
+        }
+    }
 
 
     /**
@@ -586,4 +599,76 @@ class File
     }
 
 
+
+
+
+
+
+    /**
+     * @var array
+     */
+    protected $_options = [];
+
+    /**
+     * @param $name
+     * @param null $default
+     * @return null
+     */
+    public function getOption($name, $default = null)
+    {
+        return $this->hasOption($name) ? $this->_options[$name] : $default;
+    }
+
+    /**
+     * @return array
+     */
+    public function getOptions()
+    {
+        return $this->_options;
+    }
+
+    /**
+     * @param  string $name
+     * @return bool
+     */
+    public function hasOption($name)
+    {
+        return array_key_exists($name, $this->_options);
+    }
+
+
+
+
+
+
+    /**
+     * @param array $options
+     * @return $this
+     */
+    public function setOptions(array $options)
+    {
+        $this->_options = $options;
+        return $this;
+    }
+
+    /**
+     * @param  string $name
+     * @param  mixed  $value
+     * @return $this
+     */
+    public function setOption($name, $value)
+    {
+        $this->_options[$name] = $value;
+        return $this;
+    }
+
+    /**
+     * @param array $options
+     * @return $this
+     */
+    public function setDefaultOptions($options = [])
+    {
+        $this->_options = array_merge($options, $this->_options);
+        return $this;
+    }
 }
