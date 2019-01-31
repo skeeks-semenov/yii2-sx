@@ -19,6 +19,9 @@ use yii\widgets\ActiveForm;
  * Class BackendResponseHelper
  *
  * @package skeeks\sx\helpers
+ *
+ * @deprecated
+ *
  */
 class ResponseHelper extends Component
 {
