@@ -120,38 +120,88 @@
         },
 
 
+        /**
+         * @param event
+         * @param callback
+         * @returns {sx.classes._Component}
+         */
+        on: function(event, callback)
+        {
+            this.getEventManager().on(event, callback);
+            return this;
+        },
 
 
+        /**
+         * @param event
+         * @param callback
+         * @returns {sx.classes._Component}
+         */
+        off: function(event, callback)
+        {
+            this.getEventManager().off(event, callback);
+            return this;
+        },
+
+
+        /**
+         * @deprecated
+         * @param event
+         * @param callback
+         * @returns {*}
+         */
         bind: function(event, callback)
         {
-            this.getEventManager().bind(event, callback);
-            return this;
+            return this.on(event, callback);
         },
 
+        /**
+         * @deprecated
+         * @param event
+         * @param callback
+         * @returns {sx.classes._Component}
+         */
         unbind: function(event, callback)
         {
-            this.getEventManager().unbind(event, callback);
-            return this;
+            return this.off(event, callback);
         },
 
+        /**
+         * @param event
+         * @param data
+         * @returns {sx.classes._Component}
+         */
         trigger: function(event, data)
         {
             this.getEventManager().trigger(event, data);
             return this;
         },
 
+        /**
+         * @param event
+         * @param hookFunction
+         * @returns {sx.classes._Component}
+         */
         hook: function(event, hookFunction)
         {
             this.getEventManager().hook(event, hookFunction);
             return this;
         },
 
+        /**
+         * @param event
+         * @param hookFunction
+         * @returns {sx.classes._Component}
+         */
         unhook: function(event, hookFunction)
         {
             this.getEventManager().unhook(event, hookFunction);
             return this;
         },
 
+        /**
+         * @returns {*}
+         */
         hooks: function()
         {
             return this.getEventManager().hooks();

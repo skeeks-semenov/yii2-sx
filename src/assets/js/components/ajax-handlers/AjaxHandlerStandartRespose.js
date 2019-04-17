@@ -44,36 +44,41 @@
             var self = this;
 
             //Отключаем внутренний подсчет состояния ajax запроса
-            this.getAjaxQuery()
-                .onBeforeSend(function(e, data)
+            var AjaxQuery = this.getAjaxQuery();
+            AjaxQuery.on("beforeExecute", function() {
+                if (self.get('enableBlocker', false))
                 {
-                    if (self.get('enableBlocker', false))
-                    {
-                        self.getBlocker().block();
-                    }
-                })
-                .onComplete(function(e, data)
+                    self.getBlocker().block();
+                }
+            });
+
+            AjaxQuery
+                .always(function(e, data)
                 {
                     if (self.get('enableBlocker', false))
                     {
                         self.getBlocker().unblock();
                     }
                 })
-                .onError(function(e, data)
+                .fail(function(e, data)
                 {
+                    var message = "Ошибка выполнения ajax запроса. " + data.textStatus + " - " + data.errorThrown + ".";
                     //Ошибка выполнения ajax запроса.
                     self.trigger('ajaxExecuteError', data);
-                    self.trigger('error', data);
+                    self.trigger('error', {
+                        'message': message,
+                        'e': data
+                    });
 
                     //Разрешено ли показывать стандартное сообщение об ошибке, когда ajax запрос не выполнен
                     if ( self.get('ajaxExecuteErrorAllowMessage', true) )
                     {
-                        sx.notify.error(self.get('ajaxExecuteErrorMessage', 'Ошибка выполнения ajax запроса'));
+                        sx.notify.error(self.get('ajaxExecuteErrorMessage', message));
                     }
                 })
-                .onSuccess(function(e, data)
+                .done(function(e, data)
                 {
-                    var response = data.response;
+                    var response = data;
                     self.trigger('ajaxExecuteSuccess', response);
 
                     //Разрешено ли показывать стандартное сообщение об ошибке, когда ajax запрос успешно выполнен

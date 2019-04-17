@@ -96,38 +96,7 @@
             var self = this;
 
 
-            var ajaxStartCallback = this.get("ajaxStart");
-            if (ajaxStartCallback !== null)
-            {
-                this.onAjaxStart(ajaxStartCallback);
-                this.set("ajaxStart", null)
-            }
 
-
-            var ajaxStopCallback = this.get("ajaxStop");
-            if (ajaxStopCallback !== null)
-            {
-                this.onAjaxStop(ajaxStopCallback);
-                this.set("ajaxStop", null)
-            }
-
-
-            var ajaxCompleteCallback = this.get("ajaxComplete");
-            if (ajaxCompleteCallback !== null)
-            {
-                this.onAjaxComplete(ajaxCompleteCallback);
-                this.set("ajaxComplete", null)
-            }
-
-
-
-
-            var beforeSendCallback = this.get("beforeSend");
-            if (beforeSendCallback !== null)
-            {
-                this.onBeforeSend(beforeSendCallback);
-                this.set("beforeSend", null)
-            }
 
             var completeCallback = this.get("complete");
             if (completeCallback !== null)
@@ -150,6 +119,7 @@
                 this.set("error", null)
             }
 
+
             this.onComplete(function()
             {
                 /**
@@ -164,12 +134,32 @@
                 }
             });
 
+
+
+
+
+            var done = this.get("done");
+            if (done !== null)
+            {
+                this.done(done);
+            }
+            var fail = this.get("fail");
+            if (fail !== null)
+            {
+                this.fail(fail);
+            }
+            var always = this.get("always");
+            if (always !== null)
+            {
+                this.always(always);
+            }
+
+
             this._additional = null;
         },
 
         /**
          * Выполнить запрос
-         *
          * @returns {*}
          */
         execute: function()
@@ -181,75 +171,37 @@
                 self._executing = Number(self._executing + 1);
             }
 
-            /**
-             * Событие перед началом выполнения запроса
-             */
-            self.trigger("beforeExecute", {
-                ajax: self
-            });
-
             var settings = this.getOpts();
 
-            _.extend(settings, {
+            this.trigger('beforeExecute');
 
-                ajaxStart: function()
-                {
-                    self.trigger("ajaxStart", {
-                        ajax: self
-                    });
-                },
-
-                ajaxStop: function()
-                {
-                    self.trigger("ajaxStop", {
-                        ajax: self
-                    });
-                },
-
-                ajaxComplete: function()
-                {
-                    self.trigger("ajaxComplete", {
-                        ajax: self
-                    });
-                },
-
-                beforeSend: function()
-                {
-                    self.trigger("beforeSend", {
-                        ajax: self
-                    });
-                },
-
-                complete: function(jqXHR, textStatus, errorThrown) {
-                    self.trigger("complete", {
-                        "ajax": self,
-                        "jqXHR": jqXHR,
-                        "textStatus": textStatus,
-                        "errorThrown": errorThrown
-                    });
-                },
-
-                success: function(response, textStatus, jqXHR) {
+            return $.ajax(this.getUrl(), settings)
+                .done(function (e) {
+                    self.trigger("done", e);
                     self.trigger("success", {
-                        ajax: self,
-                        "response": response,
-                        "textStatus": textStatus,
-                        "jqXHR": jqXHR
+                        'ajax': self,
+                        "response": e,
                     });
-                },
 
-                error: function(jqXHR, textStatus, errorThrown) {
-                    self.trigger("error", {
-                        ajax: self,
+                })
+                .fail(function(jqXHR, textStatus, errorThrown) {
+
+                    var data = {
+                        'sender': self,
                         "errorThrown": errorThrown,
                         "textStatus": textStatus,
                         "jqXHR": jqXHR
-                    });
-                }
+                    };
 
-            });
+                    self.trigger("fail", data);
+                    self.trigger("error", data);
 
-            return $.ajax(this.getUrl(), settings);
+                })
+                .always(function(e) {
+                    self.trigger("complete", e);
+                    self.trigger("always", e);
+                })
+            ;
         },
 
         /**
@@ -357,52 +309,89 @@
         },
 
             /**
-             * Далее сделано для удобства построения bind - ов
+             * Далее сделано для удобства построения on - ов
              */
 
-        onAjaxStart: function(callback)
-        {
-            this.bind("ajaxStart", callback);
-            return this;
-        },
-
-        onAjaxStop: function(callback)
-        {
-            this.bind("ajaxStop", callback);
-            return this;
-        },
-
-        onAjaxComplete: function(callback)
-        {
-            this.bind("ajaxComplete", callback);
-            return this;
-        },
 
 
-
+        /**
+         * @deprecated
+         * @param callback
+         * @returns {sx.classes._AjaxQuery}
+         */
         onSuccess: function(callback)
         {
-            this.bind("success", callback);
+            this.on("success", callback);
             return this;
         },
 
+        /**
+         * @deprecated
+         * @param callback
+         * @returns {sx.classes._AjaxQuery}
+         */
         onError: function(callback)
         {
-            this.getEventManager().bind("error", callback);
+            this.on("error", callback);
             return this;
         },
 
+        /**
+         * @deprecated
+         * @param callback
+         * @returns {sx.classes._AjaxQuery}
+         */
         onComplete: function(callback)
         {
-            this.getEventManager().bind("complete", callback);
+            this.on("complete", callback);
             return this;
         },
 
+        /**
+         * @deprecated
+         * @param callback
+         * @returns {sx.classes._AjaxQuery}
+         */
         onBeforeSend: function(callback)
         {
-            this.getEventManager().bind("beforeSend", callback);
+            this.on("beforeExecute", callback);
             return this;
-        }
+        },
+
+
+        /**
+         * Обновленные функции
+         */
+
+        /**
+         * @param callback
+         * @returns {sx.classes._AjaxQuery}
+         */
+        done: function(callback) {
+            this.on("done", callback);
+            return this;
+        },
+
+        /**
+         * @param callback
+         * @returns {sx.classes._AjaxQuery}
+         */
+        fail: function(callback) {
+            this.on("fail", callback);
+            return this;
+        },
+
+        /**
+         * @param callback
+         * @returns {sx.classes._AjaxQuery}
+         */
+        always: function(callback) {
+            this.on("always", callback);
+            return this;
+        },
+
+
+
     });
 
     sx.classes.AjaxQuery = sx.classes._AjaxQuery.extend({});

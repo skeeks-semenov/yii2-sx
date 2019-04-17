@@ -1,6 +1,12 @@
 Changelog
 =========
 
+1.5.0
+-----------------
+  * Update events
+  * Update EventManager
+  * Update ajax
+  
 1.4.1
 -----------------
   * Update
