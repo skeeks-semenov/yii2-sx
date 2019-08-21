@@ -1,18 +1,20 @@
-/*!
- *
+/**
  * Помощьник для работы с конами
  *
- * @date 06.11.2014
- * @copyright skeeks.com
+ * @link https://cms.skeeks.com/
+ * @copyright Copyright (c) 2010 SkeekS
+ * @license https://cms.skeeks.com/license/
  * @author Semenov Alexander <semenov@skeeks.com>
  */
 
 
-(function(window, sx, $, _)
-{
+(function (window, sx, $, _) {
+
     sx.createNamespace('classes', sx);
 
     /**
+     *
+     * Объект окна порождаемый в текущем окне
      *
      * @event beforeOpen
      * @event afterOpen
@@ -23,33 +25,31 @@
      */
     sx.classes._Window = sx.classes.Component.extend({
 
-        construct: function (src, name, opts)
-        {
+        construct: function (src, name, opts) {
             opts = opts || {};
-            this._name          = name ? name : "sx-new-window";
-            this._src           = src;
-            this._openedWindow  = null;
+            this._name = name || "sx-window-" + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+            this._src = src;
+            this._openedWindow = null;
 
             this.applyParentMethod(sx.classes.Component, 'construct', [opts]); // TODO: make a workaround for magic parent calling
         },
 
-        _init: function()
-        {
+        _init: function () {
             this
                 .defaultOpts({
-                    "left"          : "50",
-                    "top"           : "50",
-                    "width"         : "90%",
-                    "height"        : "70%",
-                    "menubar"       : "no", //Если этот параметр установлен в yes, то в новом окне будет меню.
-                    "location"      : "no", //Если этот параметр установлен в yes, то в новом окне будет адресная строка
-                    "toolbar"       : "no", //Если этот параметр установлен в yes, то в новом окне будет навигация (кнопки назад, вперед и т.п.) и панель вкладок
-                    "scrollbars"    : "yes", //Если этот параметр установлен в yes, то новое окно при необходимости сможет показывать полосы прокрутки
-                    "resizable"     : "yes", //Если этот параметр установлен в yes, то пользователь сможет изменить размеры нового окна. Рекомендуется всегда устанавливать этот параметр.
-                    "status"        : "yes", //Если этот параметр установлен в yes, то в новом окне будет строка состояния
-                    "directories"   : "no",  //Если этот параметр установлен в yes, то в новом окне будут закладки/избранное
-                    "fullscreen"   : "no",  //Если этот параметр установлен в yes, то в новом окне будут закладки/избранное
-                    "dependent"   : "no",  //Если этот параметр установлен в yes, то в новом окне будут закладки/избранное
+                    "left": "50",
+                    "top": "50",
+                    "width": "90%",
+                    "height": "70%",
+                    "menubar": "no", //Если этот параметр установлен в yes, то в новом окне будет меню.
+                    "location": "no", //Если этот параметр установлен в yes, то в новом окне будет адресная строка
+                    "toolbar": "no", //Если этот параметр установлен в yes, то в новом окне будет навигация (кнопки назад, вперед и т.п.) и панель вкладок
+                    "scrollbars": "yes", //Если этот параметр установлен в yes, то новое окно при необходимости сможет показывать полосы прокрутки
+                    "resizable": "yes", //Если этот параметр установлен в yes, то пользователь сможет изменить размеры нового окна. Рекомендуется всегда устанавливать этот параметр.
+                    "status": "yes", //Если этот параметр установлен в yes, то в новом окне будет строка состояния
+                    "directories": "no",  //Если этот параметр установлен в yes, то в новом окне будут закладки/избранное
+                    "fullscreen": "no",  //Если этот параметр установлен в yes, то в новом окне будут закладки/избранное
+                    "dependent": "no",  //Если этот параметр установлен в yes, то в новом окне будут закладки/избранное
                     //"dialog"   : "yes",  //Если этот параметр установлен в yes, то в новом окне будут закладки/избранное
                     //"modal"         : "yes"  //Если этот параметр установлен в yes, то в новом окне будут закладки/избранное
                 })
@@ -61,20 +61,17 @@
          *
          * @returns {sx.classes.Window}
          */
-        normalizeOptions: function()
-        {
-            var windowWidth     = window.screen.width;
-            var windowHeight    = window.screen.height;
+        normalizeOptions: function () {
+            var windowWidth = window.screen.width;
+            var windowHeight = window.screen.height;
 
-            if (sx.helpers.String.strpos(this.get("width"), "%", 0))
-            {
-                var newWidth = (Number(sx.helpers.String.str_replace("%", "", this.get("width")))/100) * windowWidth;
+            if (sx.helpers.String.strpos(this.get("width"), "%", 0)) {
+                var newWidth = (Number(sx.helpers.String.str_replace("%", "", this.get("width"))) / 100) * windowWidth;
                 this.set("width", Number(newWidth).toFixed())
             }
 
-            if (sx.helpers.String.strpos(this.get("height"), "%", 0))
-            {
-                var newHeight = (Number(sx.helpers.String.str_replace("%", "", this.get("height")))/100) * windowHeight;
+            if (sx.helpers.String.strpos(this.get("height"), "%", 0)) {
+                var newHeight = (Number(sx.helpers.String.str_replace("%", "", this.get("height"))) / 100) * windowHeight;
                 this.set("height", Number(newHeight).toFixed())
             }
 
@@ -84,18 +81,14 @@
         /**
          * @returns {Window}
          */
-        open: function()
-        {
+        open: function () {
             var self = this;
             this.trigger('beforeOpen');
             //строка параметров, собираем из массива
             var paramsSting = "";
-            if (this.getOpts())
-            {
-                _.each(this.getOpts(), function(value, key)
-                {
-                    if (paramsSting)
-                    {
+            if (this.getOpts()) {
+                _.each(this.getOpts(), function (value, key) {
+                    if (paramsSting) {
                         paramsSting = paramsSting + ',';
                     }
                     paramsSting = paramsSting + String(key) + "=" + String(value);
@@ -103,8 +96,7 @@
             }
 
             this._openedWindow = window.open(this._src, this._name, paramsSting);
-            if (!this._openedWindow)
-            {
+            if (!this._openedWindow) {
                 this.trigger('error', {
                     'message': 'Браузер блокирует окно, необходимо его разрешить'
                 });
@@ -114,10 +106,8 @@
 
             this.trigger('afterOpen');
 
-            var timer = setInterval(function()
-            {
-                if(self._openedWindow.closed)
-                {
+            var timer = setInterval(function () {
+                if (self._openedWindow.closed) {
                     clearInterval(timer);
                     self.trigger('close');
                 }
@@ -130,23 +120,19 @@
         /**
          * @returns {sx.classes.Window}
          */
-        focus: function()
-        {
-            if (this.getOpenedWindow())
-            {
+        focus: function () {
+            if (this.getOpenedWindow()) {
                 this.getOpenedWindow().focus();
             }
 
             return this;
         },
-        
+
         /**
          * @returns {sx.classes._Window}
          */
-        close: function()
-        {
-            if (this.getOpenedWindow())
-            {
+        close: function () {
+            if (this.getOpenedWindow()) {
                 this.getOpenedWindow().close();
             }
 
@@ -156,10 +142,8 @@
         /**
          * @returns {boolean}
          */
-        isOpened: function()
-        {
-            if (!this._openedWindow)
-            {
+        isOpened: function () {
+            if (!this._openedWindow) {
                 return false;
             }
 
@@ -169,29 +153,26 @@
         /**
          * @returns {Window}|null
          */
-        getOpenedWindow: function()
-        {
+        getOpenedWindow: function () {
             return this._openedWindow;
         },
 
         /**
          * @returns {string}
          */
-        getName: function()
-        {
+        getName: function () {
             return String(this._name);
         },
 
         /**
          * @returns {sx.classes.Window}
          */
-        setCenterOptions: function()
-        {
-            var windowWidth     = window.screen.width;
-            var windowHeight    = window.screen.height;
+        setCenterOptions: function () {
+            var windowWidth = window.screen.width;
+            var windowHeight = window.screen.height;
 
-            var left = ((windowWidth - this.get("width"))/2);
-            var top  = ((windowHeight - this.get("height"))/2);
+            var left = ((windowWidth - this.get("width")) / 2);
+            var top = ((windowHeight - this.get("height")) / 2);
 
             this
                 .set("left", left)
@@ -203,8 +184,7 @@
         /**
          * @returns {sx.classes.Window}
          */
-        enableLocation: function()
-        {
+        enableLocation: function () {
             this.set('location', 'yes');
             return this;
         },
@@ -212,8 +192,7 @@
         /**
          * @returns {sx.classes.Window}
          */
-        disableLocation: function()
-        {
+        disableLocation: function () {
             this.set('location', 'no');
             return this;
         },
@@ -221,8 +200,7 @@
         /**
          * @returns {sx.classes.Window}
          */
-        enableResize: function()
-        {
+        enableResize: function () {
             this.set('resizable', 'yes');
             return this;
         },
@@ -230,8 +208,7 @@
         /**
          * @returns {sx.classes.Window}
          */
-        disableResize: function()
-        {
+        disableResize: function () {
             this.set('resizable', 'no');
             return this;
         }
@@ -247,12 +224,9 @@
         /**
          * @returns {Array.<T>|*}
          */
-        findListRegistered: function()
-        {
-            return _.filter(sx.components, function(component)
-            {
-                if (component instanceof sx.classes._Window)
-                {
+        findListRegistered: function () {
+            return _.filter(sx.components, function (component) {
+                if (component instanceof sx.classes._Window) {
                     return true;
                 }
             });
@@ -263,12 +237,9 @@
          * @param name
          * @returns {sx.classes.Window|null}
          */
-        findOneByName: function(name)
-        {
-            return _.find(this.findListRegistered(), function(component)
-            {
-                if (component.getName() == String(name))
-                {
+        findOneByName: function (name) {
+            return _.find(this.findListRegistered(), function (component) {
+                if (component.getName() == String(name)) {
                     return true;
                 }
             });
@@ -287,28 +258,23 @@
      */
     sx.classes._CurrentWindow = sx.classes.Component.extend({
 
-        _init: function()
-        {
+        _init: function () {
             //Если есть родительское окно, слушае когда оно закроется, как только закроется, закроем и это
             var self = this;
             this._timer = null;
 
-            //Закрыть это окно, елси закроется родительское.
+            //Закрыть это окно, если закроется родительское.
             this.listenParent = false;
 
-            if (this.openerWindow())
-            {
-                this._timer = setInterval(function()
-                {
-                    if(!self.openerWindow())
-                    {
+            if (this.openerWindow()) {
+                this._timer = setInterval(function () {
+                    if (!self.openerWindow()) {
                         clearInterval(self._timer);
-                        if (self.listenParent)
-                        {
+                        if (self.listenParent) {
                             window.close();
                         }
                     }
-                }, 1000);
+                }, 3000);
             }
         },
 
@@ -316,17 +282,14 @@
          * Родитльское окно
          * @returns {*}
          */
-        openerWindow: function()
-        {
-            if (window.opener)
-            {
+        openerWindow: function () {
+            if (window.opener) {
                 return window.opener;
             }
 
-            /*if (window.parent)
-            {
+            if (window.parent && window.name != window.parent.name) {
                 return window.parent;
-            }*/
+            }
 
             return null;
         },
@@ -335,16 +298,12 @@
          * объект sx родительского окна
          * @returns {Window.sx|*}
          */
-        openerSx: function()
-        {
-            try
-            {
-                if (this.openerWindow())
-                {
+        openerSx: function () {
+            try {
+                if (this.openerWindow()) {
                     return this.openerWindow().sx;
                 }
-            } catch (e)
-            {
+            } catch (e) {
                 return null;
             }
 
@@ -357,10 +316,8 @@
          * Виджет родительского окна, который породил это окно
          * @returns {sx.classes._Window|null}
          */
-        openerWidget: function()
-        {
-            if (this.openerSx())
-            {
+        openerWidget: function () {
+            if (this.openerSx()) {
                 return this.openerSx().Windows.findOneByName(window.name);
             }
 
@@ -373,10 +330,8 @@
          * @param data
          * @returns {sx.classes._CurrentWindow}
          */
-        openerWidgetTriggerEvent: function(event, data)
-        {
-            if (!this.openerWidget())
-            {
+        openerWidgetTriggerEvent: function (event, data) {
+            if (!this.openerWidget()) {
                 return this;
             }
 
