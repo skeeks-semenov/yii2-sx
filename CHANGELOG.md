@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.5.1
+-----------------
+  * Update Window component
+  
 1.5.0
 -----------------
   * Update events
