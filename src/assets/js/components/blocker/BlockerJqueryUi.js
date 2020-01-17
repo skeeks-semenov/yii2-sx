@@ -15,8 +15,10 @@
         {
             this.applyParentMethod(sx.classes._Blocker, '_init', []);
 
+            var wait_text = sx.Config.get('blocker_wait_text');
+            
             this.defaultOpts({
-                message: "<div style='padding: 5px;'>Подождите...</div>",
+                message: "<div style='padding: 5px;'>" + wait_text + "</div>",
                 css: {
                     border: '1px solid #108acb',
                     padding: '10px;',

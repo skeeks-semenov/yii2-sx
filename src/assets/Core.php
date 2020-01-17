@@ -10,6 +10,7 @@
  */
 namespace skeeks\sx\assets;
 
+use yii\helpers\Json;
 /**
  * Class Core
  * @package skeeks\sx\assets
@@ -25,9 +26,13 @@ class Core extends BaseAsset
     {
         parent::registerAssetFiles($view);
 
+        $jsData = Json::encode([
+            'blocker_wait_text' => \Yii::t('app', 'Подождите...')
+        ]);
+        
         $view->registerJs(<<<JS
         (function(sx, $, _){
-            sx.init({});
+            sx.init({$jsData});
         })(sx, sx.$, sx._);
 JS
 );
