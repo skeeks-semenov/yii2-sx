@@ -30,6 +30,7 @@
             this._name = name || "sx-window-" + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
             this._src = src;
             this._openedWindow = null;
+            this.isAllowClose = true;
 
             this.applyParentMethod(sx.classes.Component, 'construct', [opts]); // TODO: make a workaround for magic parent calling
         },
@@ -133,7 +134,10 @@
          */
         close: function () {
             if (this.getOpenedWindow()) {
-                this.getOpenedWindow().close();
+                this.trigger("beforeClose");
+                if (this.isAllowClose) {
+                    this.getOpenedWindow().close();
+                }
             }
 
             return this;
