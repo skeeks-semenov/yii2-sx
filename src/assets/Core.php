@@ -27,7 +27,9 @@ class Core extends BaseAsset
         parent::registerAssetFiles($view);
 
         $jsData = Json::encode([
-            'blocker_wait_text' => \Yii::t('app', 'Подождите...')
+            'blocker_wait_text' => \Yii::t('app', 'Подождите...'),
+            'blocker_wait_image' => self::getAssetUrl('img/loader/Double-Ring-2.7s-61px.svg'),
+            'blocker_opacity' => 0.0
         ]);
         
         $view->registerJs(<<<JS

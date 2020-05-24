@@ -16,26 +16,12 @@
             this.applyParentMethod(sx.classes._Blocker, '_init', []);
 
             var wait_text = sx.Config.get('blocker_wait_text');
-            var wait_image = sx.Config.get('blocker_wait_image');
-            var blocker_opacity = sx.Config.get('blocker_opacity');
-
-            var message = "<div style=''><img src='" + wait_image + "' /></div>";
+            
             this.defaultOpts({
-                message: message,
-                overlayCSS: {
-                    backgroundColor: '#000',
-                    opacity:         0
-                    /*cursor:          'wait'*/
-                },
-
+                message: "<div style='padding: 5px;'>" + wait_text + "</div>",
                 css: {
-                    border: 'none',
-                    padding: '15px',
-                    backgroundColor: 'none;',
-                    '-webkit-border-radiloaderus': '10px',
-                    '-moz-border-radius': '10px',
-                    opacity: .5,
-                    color: '#fff'
+                    border: '1px solid #108acb',
+                    padding: '10px;',
                 }
             });
         },
