@@ -280,6 +280,10 @@
                     }
                 }, 3000);
             }
+
+            this.on("reload", function() {
+                window.location.reload();
+            });
         },
 
         /**
