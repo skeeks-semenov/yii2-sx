@@ -80,7 +80,7 @@
     sx.init = function(data)
     {
         //Мержим конфиги
-        sx.Config.merge(data);
+        sx.Config.mergeDefaults(data);
         //Библиотека sx готова
         sx._ready();
     };
