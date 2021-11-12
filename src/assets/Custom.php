@@ -15,6 +15,12 @@ namespace skeeks\sx\assets;
  */
 class Custom extends BaseAsset
 {
+    public function init()
+    {
+        parent::init();
+        $this->_implodeFiles();
+    }
+
     public $js = [
         'js/Widget.js',
         'js/helpers/Helpers.js',

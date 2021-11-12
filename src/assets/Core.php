@@ -10,6 +10,7 @@
  */
 namespace skeeks\sx\assets;
 
+use skeeks\sx\File;
 use yii\helpers\Json;
 /**
  * Class Core
@@ -17,6 +18,12 @@ use yii\helpers\Json;
  */
 class Core extends BaseAsset
 {
+    public function init()
+    {
+        parent::init();
+        $this->_implodeFiles();
+    }
+
     /**
      * Registers this asset bundle with a view.
      * @param View $view the view to be registered with
