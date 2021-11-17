@@ -26,7 +26,7 @@ class Custom extends BaseAsset
 
     public $css = [
         //JqueryJgrowl
-        'libs/jquery-plugins/jquery-jgrowl/jquery.jgrowl.min.css',
+        //'libs/jquery-plugins/jquery-jgrowl/jquery.jgrowl.min.css',
     ];
 
     public $js = [
@@ -35,7 +35,7 @@ class Custom extends BaseAsset
         'js/components/notify/Notify.js',
 
         //JqueryJgrowl
-        'libs/jquery-plugins/jquery-jgrowl/jquery.jgrowl.js',
+        //'libs/jquery-plugins/jquery-jgrowl/jquery.jgrowl.js',
 
         //'skeeks\sx\assets\ComponentNotifyJgrowl',
         'js/components/notify/NotifyJgrowl.js',
