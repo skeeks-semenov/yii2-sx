@@ -21,7 +21,8 @@ class Core extends BaseAsset
     public function init()
     {
         parent::init();
-        $this->_implodeFiles();
+        //Ломается путь к изображению закгрузки
+        //$this->_implodeFiles();
     }
 
     /**

@@ -21,7 +21,7 @@ class Custom extends BaseAsset
     public function init()
     {
         parent::init();
-        $this->_implodeFiles();
+        //$this->_implodeFiles();
     }
 
     public $css = [
@@ -32,16 +32,16 @@ class Custom extends BaseAsset
     public $js = [
 
         //ComponentNotify
-        'js/components/notify/Notify.js',
+        //'js/components/notify/Notify.js',
 
         //JqueryJgrowl
         //'libs/jquery-plugins/jquery-jgrowl/jquery.jgrowl.js',
 
         //'skeeks\sx\assets\ComponentNotifyJgrowl',
-        'js/components/notify/NotifyJgrowl.js',
+        //'js/components/notify/NotifyJgrowl.js',
 
         //'skeeks\sx\assets\JqueryBlockUi',
-        'libs/jquery-plugins/block-ui/jquery.blockUI.min.js',
+        //'libs/jquery-plugins/block-ui/jquery.blockUI.min.js',
 
         'js/Widget.js',
         'js/helpers/Helpers.js',
@@ -55,8 +55,8 @@ class Custom extends BaseAsset
     public $depends = [
         'yii\web\YiiAsset',
         'skeeks\sx\assets\Core',
-        //'skeeks\sx\assets\ComponentNotifyJgrowl',
-        //'skeeks\sx\assets\JqueryBlockUi',
+        'skeeks\sx\assets\ComponentNotifyJgrowl',
+        'skeeks\sx\assets\JqueryBlockUi',
     ];
 
 
