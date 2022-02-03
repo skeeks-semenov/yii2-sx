@@ -34,18 +34,21 @@ class Core extends BaseAsset
     {
         parent::registerAssetFiles($view);
 
-        $jsData = Json::encode([
+        if (!\Yii::$app->request->isPjax) {
+            $jsData = Json::encode([
             'blocker_wait_text' => \Yii::t('app', 'Подождите...'),
             'blocker_wait_image' => BaseAsset::getAssetUrl('img/loader/Double-Ring-2.7s-61px.svg'),
             'blocker_opacity' => 0.0
         ]);
-        
+
         $view->registerJs(<<<JS
         (function(sx, $, _){
             sx.init({$jsData});
         })(sx, sx.$, sx._);
 JS
 );
+        }
+
     }
 
     public $css = [];
