@@ -96,7 +96,7 @@
                 });
             }
 
-            this._openedWindow = window.open(this._src, this._name, paramsSting);
+                this._openedWindow = window.open(this._src, this._name, paramsSting);
             if (!this._openedWindow) {
                 this.trigger('error', {
                     'message': 'Браузер блокирует окно, необходимо его разрешить'
@@ -267,6 +267,8 @@
             var self = this;
             this._timer = null;
 
+            this._openerWindowWidget = null;
+
             //Закрыть это окно, если закроется родительское.
             this.listenParent = false;
 
@@ -292,6 +294,7 @@
          */
         openerWindow: function () {
             if (window.opener) {
+                console.log(window.opener);
                 return window.opener;
             }
 
@@ -307,6 +310,7 @@
          * @returns {Window.sx|*}
          */
         openerSx: function () {
+
             try {
                 if (this.openerWindow()) {
                     return this.openerWindow().sx;
@@ -325,6 +329,11 @@
          * @returns {sx.classes._Window|null}
          */
         openerWidget: function () {
+
+            if (this._openerWindowWidget) {
+                return this._openerWindowWidget;
+            }
+
             if (this.openerSx()) {
                 return this.openerSx().Windows.findOneByName(window.name);
             }
@@ -339,6 +348,7 @@
          * @returns {sx.classes._CurrentWindow}
          */
         openerWidgetTriggerEvent: function (event, data) {
+            //console.log(this.openerWidget());
             if (!this.openerWidget()) {
                 return this;
             }
