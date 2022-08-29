@@ -73,7 +73,7 @@
         {
             this.trigger('afterBlock');
             throw new Error('this is abstract class');
-            return this;
+            /*return this;*/
         },
 
         /**
@@ -84,7 +84,7 @@
         {
             this.trigger('afterUnblock');
             throw new Error('this is abstract class');
-            return this;
+            /*return this;*/
         },
 
         /**

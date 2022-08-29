@@ -29,20 +29,7 @@ class Custom extends BaseAsset
         //'libs/jquery-plugins/jquery-jgrowl/jquery.jgrowl.min.css',
     ];
 
-    public $js = [
-
-        //ComponentNotify
-        //'js/components/notify/Notify.js',
-
-        //JqueryJgrowl
-        //'libs/jquery-plugins/jquery-jgrowl/jquery.jgrowl.js',
-
-        //'skeeks\sx\assets\ComponentNotifyJgrowl',
-        //'js/components/notify/NotifyJgrowl.js',
-
-        //'skeeks\sx\assets\JqueryBlockUi',
-        //'libs/jquery-plugins/block-ui/jquery.blockUI.min.js',
-
+    /*public $js = [
         'js/Widget.js',
         'js/helpers/Helpers.js',
         'js/components/window/Window.js',
@@ -50,6 +37,14 @@ class Custom extends BaseAsset
         'js/components/blocker/Blocker.js',
         'js/components/blocker/BlockerJqueryUi.js',
         'js/components/ajax-handlers/AjaxHandlerStandartRespose.js',
+    ];*/
+
+    /**
+     * @see http://closure-compiler.appspot.com/home
+     * @var array
+     */
+    public $js = [
+        'distr/skeeks-custom.min.js',
     ];
 
     public $depends = [

@@ -53,7 +53,7 @@ JS
 
     public $css = [];
 
-    public $js = [
+    /*public $js = [
         'js/Skeeks.js',
         'js/Classes.js',
         'js/Entity.js',
@@ -62,15 +62,15 @@ JS
         'js/Component.js',
         'js/Cookie.js',
         'js/Ajax.js',
-    ];
+    ];*/
 
     /**
      * @see http://closure-compiler.appspot.com/home
      * @var array
      */
-    /*public $js = [
+    public $js = [
         'distr/skeeks-core.min.js',
-    ];*/
+    ];
 
     public $depends = [
         'yii\web\YiiAsset',
