@@ -540,8 +540,17 @@ class File
      */
     public function move($newRootPathFle)
     {
-        $newFile = $this->copy($newRootPathFle);
-        $this->unlink();
+        $newFile = static::object($newRootPathFle);
+        $newFile->checkAndCreateDir();
+
+        if (!rename((string) $this->getPath(), (string) $newFile->getPath()))
+        {
+            throw new Exception("not move file: " . $this->getPath() . " into: " . $newFile->getPath());
+        }
+
+        //Это не правильно! Все зависает на файлах более 10 гб
+        /*$newFile = $this->copy($newRootPathFle);
+        $this->unlink();*/
 
         return $newFile;
     }
