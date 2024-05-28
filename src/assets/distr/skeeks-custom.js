@@ -1044,12 +1044,12 @@
             var blocker_opacity = sx.Config.get('blocker_opacity');
 
             var message = "<div style=''><img src='" + wait_image + "' /></div>";
-            this.defaultOpts({
+            /*this.defaultOpts({
                 message: message,
                 overlayCSS: {
                     backgroundColor: '#000',
                     opacity:         0
-                    /*cursor:          'wait'*/
+                    /!*cursor:          'wait'*!/
                 },
 
                 css: {
@@ -1060,6 +1060,19 @@
                     '-moz-border-radius': '10px',
                     opacity: .5,
                     color: '#fff'
+                }
+            });*/
+            this.defaultOpts({
+                message: "<div style=''></div>",
+                overlayCSS: {
+                    /*background: 'linear-gradient(100deg, #eceff180 30%, #f6f7f870 50%, #eceff182 70%)',*/
+                    opacity:         1,
+                    cursor:          'wait'
+                },
+                css: {
+                    border: 'none',
+                    backgroundColor: 'none;',
+                    opacity: .5,
                 }
             });
         },
