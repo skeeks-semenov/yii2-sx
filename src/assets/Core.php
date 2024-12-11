@@ -37,7 +37,7 @@ class Core extends BaseAsset
         if (!\Yii::$app->request->isPjax) {
             $jsData = Json::encode([
             'blocker_wait_text' => \Yii::t('app', 'Подождите...'),
-            'blocker_wait_image' => BaseAsset::getAssetUrl('img/loader/Double-Ring-2.7s-61px.svg'),
+            'blocker_wait_image' => \Yii::$app->getAssetManager()->getAssetUrl($this, 'img/loader/Double-Ring-2.7s-61px.svg'),
             'blocker_opacity' => 0.0
         ]);
 
