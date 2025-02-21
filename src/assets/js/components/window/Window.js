@@ -80,6 +80,18 @@
         },
 
         /**
+         * В этом окне будут открываться все вложенные
+         * @returns {sx.classes.CurrentWindow|*}
+         */
+        getMainWindow: function () {
+            if (sx.Window.openerWindow()) {
+                return sx.Window.openerWindow();
+            }
+
+            return window;
+        },
+
+        /**
          * @returns {Window}
          */
         open: function () {
@@ -286,6 +298,20 @@
             this.on("reload", function() {
                 window.location.reload();
             });
+
+            /**
+             * Это окно открытое во фрейме
+             */
+            if (self.getMainWindow() !== window) {
+                self.getMainWindow().console.log(window.location.href);
+
+                var newUrl = window.location.pathname + window.location.search;
+
+                /*self.getMainWindow().location.href =*/
+
+                /*self.getMainWindow().history.replaceState({}, "", window.location.href);*/
+                self.getMainWindow().history.replaceState({}, "", "#sx-open=" + newUrl);
+            }
         },
 
         /**
@@ -342,6 +368,18 @@
         },
 
         /**
+         * В этом окне будут открываться все вложенные
+         * @returns {sx.classes.CurrentWindow|*}
+         */
+        getMainWindow: function () {
+            if (this.openerWindow()) {
+                return this.openerWindow();
+            }
+
+            return window;
+        },
+
+        /**
          *
          * @param event
          * @param data
@@ -356,6 +394,8 @@
             this.openerWidget().trigger(event, data);
             return this;
         }
+
+
     });
 
     /**
