@@ -303,14 +303,18 @@
              * Это окно открытое во фрейме
              */
             if (self.getMainWindow() !== window) {
-                self.getMainWindow().console.log(window.location.href);
+                try {
+                    self.getMainWindow().console.log(window.location.href);
 
-                var newUrl = window.location.pathname + window.location.search;
+                    var newUrl = window.location.pathname + window.location.search;
 
-                /*self.getMainWindow().location.href =*/
+                    /*self.getMainWindow().location.href =*/
 
-                /*self.getMainWindow().history.replaceState({}, "", window.location.href);*/
-                self.getMainWindow().history.replaceState({}, "", "#sx-open=" + newUrl);
+                    /*self.getMainWindow().history.replaceState({}, "", window.location.href);*/
+                    self.getMainWindow().history.replaceState({}, "", "#sx-open=" + newUrl);
+                } catch (e) {
+                    console.log(e);
+                }
             }
         },
 

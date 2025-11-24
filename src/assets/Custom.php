@@ -44,7 +44,6 @@ class Custom extends BaseAsset
      * @var array
      */
     public $js = [
-        /*'distr/skeeks-custom.js',*/
         'distr/skeeks-custom.min.js',
     ];
 
