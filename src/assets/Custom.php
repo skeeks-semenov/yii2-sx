@@ -25,8 +25,7 @@ class Custom extends BaseAsset
     }
 
     public $css = [
-        //JqueryJgrowl
-        //'libs/jquery-plugins/jquery-jgrowl/jquery.jgrowl.min.css',
+        'css/components/blocker/blocker.css',
     ];
 
     /*public $js = [
@@ -45,13 +44,13 @@ class Custom extends BaseAsset
      */
     public $js = [
         'distr/skeeks-custom.min.js',
+        'js/components/blocker/BlockerNative.js',
     ];
 
     public $depends = [
         'yii\web\YiiAsset',
         'skeeks\sx\assets\Core',
-        'skeeks\sx\assets\ComponentNotifyJgrowl',
-        'skeeks\sx\assets\JqueryBlockUi',
+        'skeeks\sx\assets\ComponentNotifyToast',
     ];
 
 

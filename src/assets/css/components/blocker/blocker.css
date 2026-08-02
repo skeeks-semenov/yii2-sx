@@ -1,0 +1,118 @@
+.sx-is-blocked {
+    cursor: wait;
+}
+
+.sx-blocker {
+    position: absolute;
+    z-index: var(--sx-blocker-z-index, 30);
+    inset: 0;
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    padding: var(--sx-blocker-padding, 16px);
+    color: var(--sx-blocker-color, #242932);
+    background: var(--sx-blocker-background, rgba(246, 248, 251, .76));
+    cursor: wait;
+    opacity: 0;
+    pointer-events: auto;
+    transition: opacity 180ms ease-out;
+}
+
+.sx-blocker--page {
+    position: fixed;
+    z-index: var(--sx-blocker-page-z-index, 1040);
+}
+
+.sx-blocker::before {
+    position: absolute;
+    inset: 0;
+    content: "";
+    pointer-events: none;
+}
+
+.sx-blocker--shimmer::before {
+    width: 60%;
+    background: linear-gradient(100deg, transparent, var(--sx-blocker-shimmer-color, rgba(255, 255, 255, .58)), transparent);
+    transform: translateX(-170%);
+    animation: sx-blocker-shimmer var(--sx-blocker-shimmer-duration, 1.35s) cubic-bezier(.4, 0, .2, 1) infinite;
+}
+
+.sx-blocker.is-visible {
+    opacity: 1;
+}
+
+.sx-blocker.is-closing {
+    opacity: 0;
+}
+
+.sx-blocker__indicator {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    max-width: min(100%, 360px);
+    align-items: center;
+    gap: 10px;
+    padding: var(--sx-blocker-indicator-padding, 10px 12px);
+    color: var(--sx-blocker-indicator-color, #242932);
+    border-radius: var(--sx-blocker-indicator-radius, 10px);
+    background: var(--sx-blocker-indicator-background, rgba(255, 255, 255, .92));
+    box-shadow: var(--sx-blocker-indicator-shadow, 0 4px 8px rgba(17, 24, 39, .14));
+    font-family: var(--sx-blocker-font-family, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif);
+    font-size: var(--sx-blocker-font-size, 14px);
+    font-weight: 600;
+    line-height: 1.35;
+}
+
+.sx-blocker__spinner {
+    display: inline-block;
+    width: var(--sx-blocker-spinner-size, 22px);
+    height: var(--sx-blocker-spinner-size, 22px);
+    flex: 0 0 auto;
+    border: 2px solid var(--sx-blocker-spinner-track, #d8dde5);
+    border-top-color: var(--sx-blocker-spinner-color, #ed7044);
+    border-radius: 50%;
+    animation: sx-blocker-spin .72s linear infinite;
+}
+
+.sx-blocker__message {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.sx-blocker--compact {
+    padding: 6px;
+}
+
+.sx-blocker--compact .sx-blocker__indicator {
+    padding: 6px;
+    background: transparent;
+    box-shadow: none;
+}
+
+.sx-blocker--compact .sx-blocker__spinner {
+    width: 18px;
+    height: 18px;
+}
+
+@keyframes sx-blocker-shimmer {
+    to { transform: translateX(285%); }
+}
+
+@keyframes sx-blocker-spin {
+    to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sx-blocker {
+        transition: none;
+    }
+
+    .sx-blocker--shimmer::before {
+        animation: none;
+    }
+
+    .sx-blocker__spinner {
+        animation-duration: 1.4s;
+    }
+}
