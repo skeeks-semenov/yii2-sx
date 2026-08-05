@@ -132,8 +132,21 @@
             var text = this.get("text", "");
             var actions = this.get("actions", []);
 
+            if (this._isClosed) {
+                return;
+            }
+
             if (id) {
-                $container.find('[data-sx-notify-id="' + String(id).replace(/"/g, "\\\"") + '"]').remove();
+                $container.children(".sx-notify").filter(function () {
+                    return String($(this).attr("data-sx-notify-id")) === String(id);
+                }).each(function () {
+                    var previous = $(this).data("sxNotifyInstance");
+                    if (previous && previous.close) {
+                        previous.close();
+                    } else {
+                        $(this).remove();
+                    }
+                });
             }
 
             while ($container.children(".sx-notify:not(.is-closing)").length >= maxVisible) {
@@ -209,7 +222,8 @@
             $toast.append($icon).append($content);
 
             if (this.get("closable", true)) {
-                $('<button type="button" class="sx-notify__close" aria-label="Close notification">&times;</button>')
+                $('<button type="button" class="sx-notify__close">&times;</button>')
+                    .attr("aria-label", this.get("closeLabel", "Close notification"))
                     .on("click", function () {
                         self.close();
                     })

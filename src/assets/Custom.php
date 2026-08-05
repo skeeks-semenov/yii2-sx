@@ -11,7 +11,6 @@
 
 namespace skeeks\sx\assets;
 
-use yii\helpers\Json;
 /**
  * Class Custom
  * @package skeeks\sx\assets
@@ -52,35 +51,4 @@ class Custom extends BaseAsset
         'skeeks\sx\assets\Core',
         'skeeks\sx\assets\ComponentNotifyToast',
     ];
-
-
-    /**
-     * Registers this asset bundle with a view.
-     * @param View $view the view to be registered with
-     * @return static the registered asset bundle instance
-     */
-    public function registerAssetFiles($view)
-    {
-        parent::registerAssetFiles($view);
-
-        $options = [
-            'notify' => [
-                'imageError'   => \Yii::$app->getAssetManager()->getAssetUrl($this, 'js/components/notify/images/error.png'),
-                'imageFail'    => \Yii::$app->getAssetManager()->getAssetUrl($this, 'js/components/notify/images/fail.gif'),
-                'imageInfo'    => \Yii::$app->getAssetManager()->getAssetUrl($this, 'js/components/notify/images/info.png'),
-                'imageSuccess' => \Yii::$app->getAssetManager()->getAssetUrl($this, 'js/components/notify/images/success.png'),
-                'imageWarning' => \Yii::$app->getAssetManager()->getAssetUrl($this, 'js/components/notify/images/warning.png'),
-            ],
-        ];
-
-        $options = Json::encode($options);
-
-        $view->registerJs(<<<JS
-        (function(sx, $, _)
-        {
-            sx.Config.merge({$options});
-        })(sx, sx.$, sx._);
-JS
-        );
-    }
 }
