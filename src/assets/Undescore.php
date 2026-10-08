@@ -16,7 +16,7 @@ use yii\web\AssetBundle;
  */
 class Undescore extends AssetBundle
 {
-    public $sourcePath = '@bower/underscore';
+    public $sourcePath = '@npm/underscore';
     public $js = [
         'underscore-min.js',
     ];

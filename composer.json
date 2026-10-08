@@ -18,7 +18,7 @@
 	],
 	"require": {
 		"yiisoft/yii2": "^2",
-        "bower-asset/underscore": "^1.8"
+        "npm-asset/underscore": "^1.13.8"
 	},
 
     "autoload": {
